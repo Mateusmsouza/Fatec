@@ -1,33 +1,98 @@
 # encoding : utf-8
 # Tratamento de usuario - DONE
-# Uniao - Doing
-# Interseccao - To Do
-# A - B - To Do
+# Uniao - DONE
+# Interseccao - DONE
+# A - B - Doing
 # Conj. Complementar - To Do
 # Conj. das partes - To Do
 #---------------------------------------------------------------------------------------------
-import os # Importando a lib OS
-
+import os, sys # Importando a lib OS
+from contextlib import contextmanager
 
 #var_decisao = None # Variavel para o usuario decididr se inclui outra lista ou nao 
 vetor_de_listas = [] # Variavel veotor que terá todas as litas inclusas
-
+listas_retornar = []
+count_list = int(0)
 ######################Funções dos conjuntos####################################################
 def listador(): # Funcao que exibe um lista das listas
 	for indice, valor in enumerate(vetor_de_listas): # itera a lista de listas
 		print("Lista Número {}:{}".format(indice, valor)) # imprime lista a lista
 
+def comparador_intersec(value,lista, retorna): # Funlção criada para auxiliar a interseccção
+	# Esta função compara se o valor passado está em todas as listas, caso esteja, altera a variavel booleana retorna para False
+	for i in lista: 
+		if value in i:
+			continue
+		else:
+			retorna = False
+	return retorna
+
+
+
 
 def UNIAO(): # Funcao que une listas
 	os.system('clear') # Limpa console
 	listador() # Lista as listas
-	unir = list(int(input("Quais você queru unir? digite os numeros separados por virgula. Ex.: 1,2,3,4:\n").split(','))) # linha com problema.
-	unir = list(set(unir)) # Retira os elementos duplicados
+	global vetor_de_listas 
+	global listas_retornar
+	indices = str(input("Entre com o número de índice da lista para as listas a serem unidas:\nEx.: 0,1,2:\n"))
+	indiceunir = list(indices.split(",")) # Recolhe quais listas serão unidas
+
+	for i in indiceunir: # iterando a lista de indices
+		indice = int(i) # passando o indice pra int
+
+		listas_retornar = listas_retornar + vetor_de_listas[int(indice)] # juntando todas as listas
+	listas_retornar = list(set(listas_retornar)) # Retirando elementos repetidos * 1 será mantido junto com um '1' *
+	print(listas_retornar)
+
+		
+	#unir = list(set(unir)) # Retira os elementos duplicados
 
 def INTERSECCAO():
-	print('uniao')
+	os.system('clear') # Limpa Console
+	listador()
+	global vetor_de_listas
+	# Declaração de variaveis
+	boolean = True
+	indices = str(input("Entre com o número de índice da lista para a Intersecção:\nEx.: 0,1,2:\n"))
+	indiceunir = list(indices.split(",")) # Recolhe quais listas serão unidas
+	listas_selecionadas = []
+	lista_resultante = []
+
+
+	for i in indiceunir: # Achando as listas que o usuario quer comparar
+		indice = int(i)
+		listas_selecionadas.append(vetor_de_listas[int(indice)])
+
+	for j in listas_selecionadas[0]: # Pegando a primeira lista e verificando se seus elementos estão no restante das listas
+		adiciona = comparador_intersec(j,listas_selecionadas, True) # Chamando uma função que compara se um valor está nas listas, passa o valor(j), as listas e True como variavel de verificação
+		if adiciona == True: # Se retornar que ela estava em todas as listas, é adicionada na lista final
+			lista_resultante.append(j)
+		else: # Caso não seja, o programa prossegue
+			continue
+	print(lista_resultante)
+
+
 def DIFERENCA():
-	print('uniao')
+	global vetor_de_listas
+	os.system('clear')
+	listador()
+	indices = str(input("Entre com o número de índice de DUAS listas para a diferença\nUse o formato: 0-1:\n "))
+	indiceunir = list(indices.split("-"))
+	y = int(indiceunir[0])
+	x = int(indiceunir[1])
+	count = 0
+
+	if len(indiceunir) != 2: DIFERENCA()
+	for valor in vetor_de_listas[int(y)]:
+		if valor in vetor_de_listas[int(x)]:
+			print(vetor_de_listas[int(y)][count])
+			del vetor_de_listas[int(y)][count]
+		count += 1
+	print(vetor_de_listas[int(y)])
+
+
+
 def COMPLEMENTO():
 	print('complemento')
 def PARTES():
@@ -51,7 +116,7 @@ def lobby_user(): # Funcao que fornece os parametros para as operacoes
 		else: lobby_user()
  
 def adiciona_nova_lista(): # Funcao que de fato, recolhe os valores digitados em tela e acrescenta no vetor_de_listas
-    vetor_de_listas.append(str(input("Entre com sua lista, separando por ponto e virgula:").split(";"))) # adicionando uma nova lista no vetor
+    vetor_de_listas.append(input("Entre com sua lista, separando por ponto e virgula:").split(";")) # adicionando uma nova lista no vetor
     decisao() # Chamando a funcao que interroga o usuario  
     
 def decisao(): # Funcao que interroga o usuario
