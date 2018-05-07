@@ -5,8 +5,6 @@
 # A - B - DONE
 # Conj. Complementar - DONE
 # Conj. das partes - DONE
-# Revisar o codigo e melhorar a experiencia do usuario - To Do
-# Comentar as linhas - To do
 # ---------------------------------------------------------------------------------------------
 import os, sys  # Importando a lib OS
 from contextlib import contextmanager
@@ -144,7 +142,7 @@ def PARTES():
             lista_retorno.append(c)
     print("Partes da lista:\n")
     print(lista_retorno)
-
+    time.sleep(5) # Aguarda 5 segundos
 
 ######################TRATRAMENTO DE USUARIO E RECOLHIMENTO DE LISTAS#########################
 
