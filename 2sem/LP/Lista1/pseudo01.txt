@@ -1,0 +1,16 @@
+algoritmo "perimetro_e_quadrado"
+// Função :
+// Autor :
+// Data : 13/08/2018
+// Seção de Declarações 
+var
+         lado, area, perim:real
+inicio
+// Seção de Comandos 
+   escreva("Insira o valor")
+   leia(lado)
+   area <- lado * lado
+   perim <- 4 * lado
+   escreva("Area:", area, " e perimetro", perim)
+
+fimalgoritmo

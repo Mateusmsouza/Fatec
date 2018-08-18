@@ -1,0 +1,20 @@
+algoritmo "maior_que_dez"
+// Função :
+// Autor :
+// Data : 13/08/2018
+// Seção de Declarações 
+var
+         A, B, C, total :real
+		 
+inicio
+// Seção de Comandos 
+   leia(A)
+   leia(B)
+   leia(C)
+   total <- A+B+C
+	se total > 10 entao
+		escreva("É maior que dez")
+	senao
+		escreva("Não é maior que dez")
+   
+fimalgoritmo

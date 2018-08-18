@@ -1,0 +1,20 @@
+algoritmo "coeficiente"
+// Função :
+// Autor :
+// Data : 13/08/2018
+// Seção de Declarações 
+var
+         A, B :real
+		 
+inicio
+// Seção de Comandos 
+   leia(A)
+   leia(B)
+	
+	se (A == 0) entao
+		escreva "Valor de A não pode ser  0.\n"
+
+	fimse
+		
+
+fimalgoritmo
