@@ -1,0 +1,15 @@
+algoritmo "perimetro_e_area_retangulo"
+// Função :
+// Autor :
+// Data : 13/08/2018
+// Seção de Declarações 
+var
+         base, altura:real
+inicio
+// Seção de Comandos 
+   escreva("Insira o valor")
+   leia(base)
+   leia(altura)
+   
+   escreva("Area:",(base*altura), " Perimetro:", (base+altura)*2)
+fimalgoritmo

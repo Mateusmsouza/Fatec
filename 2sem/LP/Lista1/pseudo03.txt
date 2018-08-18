@@ -1,0 +1,17 @@
+algoritmo "triangulo_area_chato"
+// Função :
+// Autor :
+// Data : 13/08/2018
+// Seção de Declarações 
+var
+         A, B, C, TEMP : real
+inicio
+// Seção de Comandos 
+       leia(A)
+       leia(B)
+       leia(C)
+       TEMP <- ((A+B+C)/2)*(((A+B+C)/2)-A)*(((A+B+C)/2)-B)*(((A+B+C)/2)-C)
+       escreva(exp(TEMP,0.5))
+
+
+fimalgoritmo
