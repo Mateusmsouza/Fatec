@@ -16,32 +16,22 @@ int main(){
 
 	fgets(estado, sizeof estado, stdin);
 	printf("Insira o valor\n");
-	scanf("%f", &valor);
+	scanf("%g", &valor);
 
 
-	valor = strcmp(estado, 'MG');
-	printf("%s", valor);
-
-	/*if (estado == 'MG'){
-			printf("Preço final: %.2f", (valor + (valor * 0.07)));
+	if (strcmp(estado, "MG")==0){
+			printf("Preço final: %g\n", (valor * 1.07));
 		
-	}else if (estado == 'SP'){
-			printf("Preço final: %.2f", (valor + (valor * 0.12)));
-	}
+	}else if (strcmp(estado, "SP")==0){
+			printf("Preço final: %g\n", (valor * 1.12));
+	}else if (strcmp(estado, "RJ")==0){
+			printf("Preço final: %g\n", (valor * 1.15));
+	}else if(strcmp(estado, "MS")==0){
+			printf("Preço final: %g\n", (valor * 1.08));
 	
-		case 'SP':
-			
-			break;
-		case 'RJ':
-			printf("Preço final: %.2f", (valor + (valor * 0.15)));
-			break;
-		case 'MS':
-			printf("Preço final: %.2f", (valor + (valor * 0.08)));
-			break;
-		default:
-			printf("FUCK IT!\n");
-			break;*/
-	
+	}else{
+		printf("NO\n");
+	}		
 
 	return 0;
 }

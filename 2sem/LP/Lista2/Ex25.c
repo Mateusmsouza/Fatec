@@ -8,9 +8,9 @@ int main(){
 
 
 	printf("Entre com A, B e C da equação de 2o grau.\n");
-	scanf("%d", A);
-	scanf("%d", B);
-	scanf("%d", C);
+	scanf("%d", &A);
+	scanf("%d", &B);
+	scanf("%d", &C);
 
 	if (A == 0){
 		printf("Não é equação de 2o grau\n");
@@ -21,16 +21,11 @@ int main(){
 
 	if (delta < 0){
 		printf("Não existe raiz\n");
-	}
-
-	else if(delta == 0){
+	} else if(delta == 0){
 		printf("Raiz unica.\n");
-	}
+	} else {
+		printf("Raiz Posivita:%g\n\n", ((-B + sqrt(delta))/(2*A)));
+		printf("Raiz Negativa:%g\n\n", ((-B - sqrt(delta))/(2*A)));
+		}
 
-	else{
-		printf("Raiz Posivita:%d\n\n", ((-B + sqrt(delta))/(2*A));
-		printf("Raiz Negativa:%d\n\n", ((-B - sqrt(delta))/(2*A));
-	}
-	
-	return 0;
 }
