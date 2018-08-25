@@ -11,13 +11,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <conio.h>
 
 int perimetro_quadrado(int lado);//s� declara��o
 
+void perim_menor_10(int lado){
+
+  if ((4*lado)>10){
+    printf("O perimetro é maior que 10!\n");
+  }else if((4 * lado)==10){
+    printf("O perimetro é igual a 10\n");
+  }else{
+    printf("O perimetro é menor que 10\n");
+  }
+}
+
 void area_quadrado(int lado)
 {
+
+  
     printf("\narea=%d",lado*lado);
+}
+
+int area_maior_10(int lado){
+  if ((lado * lado)>10){
+    return 1;
+  }else{
+    return 0;
+  }
+
+
 }
 
 float diagonal_quadrado()
@@ -29,32 +51,33 @@ float diagonal_quadrado()
 }
 int main()
 {
-    char op;
+    int op;
     int la;
     do
     {
-     printf("\no que deseja:\npERIMETRO\naREA\ndIAGONAL\nsAIR\n");
-     op=getche();
-     op=tolower(op);//mandando para min�sculo
+     printf("\no que deseja:\n1-PERIMETRO\n2-AREA\n3-DIAGONAL\n4-SAIR\n");
+     scanf("%d", &op);//mandando para min�sculo
      switch(op)
      {
-         case 'p':printf("\nlado?");
+         case 1:printf("\nlado?");
                   scanf("%d",&la);
                   printf("\nperi=%d",perimetro_quadrado(la));
+                  perim_menor_10(la);
                   break;
-         case 'a':printf("\nlado?");
+         case 2:printf("\nlado?");
                   scanf("%d",&la);
                   area_quadrado(la);
+                  printf("\nRetorno:%d\n", area_maior_10(la) );
                   break;
 
-         case 'd':printf("\ndiagonal=%.2f",diagonal_quadrado());
+         case 3:printf("\ndiagonal=%.2f",diagonal_quadrado());
                   break;
-         case 's': printf("\n tchau");
+         case 4: printf("\n tchau");
                   break;
          default:printf("\n op errada");
 
      }
-    }while(op!='s');
+    }while(op!=4);
 
     return 0;
 }
