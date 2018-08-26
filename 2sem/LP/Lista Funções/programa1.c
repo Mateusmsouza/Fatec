@@ -26,9 +26,7 @@ void perim_menor_10(int lado){
 }
 
 void area_quadrado(int lado)
-{
-
-  
+{ 
     printf("\narea=%d",lado*lado);
 }
 
@@ -38,8 +36,6 @@ int area_maior_10(int lado){
   }else{
     return 0;
   }
-
-
 }
 
 float diagonal_quadrado()
@@ -49,6 +45,8 @@ float diagonal_quadrado()
   scanf("%d", &lado);
   return(lado*sqrt(2));
 }
+
+
 int main()
 {
     int op;
