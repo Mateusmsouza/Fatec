@@ -63,4 +63,6 @@ int main(){
 
 
 	return 666;
+	system("pause");
+
 }

@@ -10,7 +10,7 @@ int calcula_RPF(float salario){
 
   if (salario_fixo <= 1903.98){
     printf("Isento.\n");
-  } 
+  }
   else if (salario_fixo > 1903.98){
     if (salario_fixo >= 2826.65){
 
@@ -84,10 +84,10 @@ int main(){
 
   printf("Manda o salário ai.\n");
   scanf("%f", &salario);
-  
+
   printf("Escolha uma opção caso usuário.\n1- Imposto\n2- Novo salário\n3-Classificação\n");
   scanf("%d", &decisao);
- 
+
 
   switch(decisao){
     case 1: calcula_RPF(salario);
@@ -100,4 +100,5 @@ int main(){
   }
 
   return 0;
+  system("pause");
 }
