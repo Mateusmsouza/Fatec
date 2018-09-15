@@ -42,9 +42,10 @@ int main(){
 					printf("Quanta gasolina?\n");
 					scanf("%f", &quantidade);
 					adicionarGasolina(quantidade);
-		}		
+		}
 
 	}while (op != 666);
 
 	return 0;
+	system("pause");
 }

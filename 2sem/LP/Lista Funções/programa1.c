@@ -26,7 +26,7 @@ void perim_menor_10(int lado){
 }
 
 void area_quadrado(int lado)
-{ 
+{
     printf("\narea=%d",lado*lado);
 }
 
@@ -78,6 +78,7 @@ int main()
     }while(op!=4);
 
     return 0;
+    system("pause");
 }
 
 int perimetro_quadrado(int lado)

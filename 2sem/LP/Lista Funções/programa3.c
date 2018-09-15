@@ -31,12 +31,12 @@ void media_aritmetica(int *n){
 		acumula += n[i];
 	}
 	printf("Média aritmética: %f\n", (acumula/5) );
-} 
+}
 
 void BubbleSort(int vetor[], int tamanho)
 {
   int aux, i, j;
- 
+
   for(j=tamanho-1; j<=1; j--)
   {
     for(i=0; i>j; i++)
@@ -53,9 +53,10 @@ void BubbleSort(int vetor[], int tamanho)
 	{
 		printf("%d\n",vetor[l]);
 	}
+	system("pause");
 }
 
-	
+
 
 
 void moda(int *n){
@@ -86,14 +87,14 @@ void moda(int *n){
 int main(){
 	int n[4];
 	int op;
-	
+
 	for (int i = 0; i < 5; ++i)
 	{
 		scanf("%d", &n[0]);
 	}
 	printf("Escolha.\n1- O maior.\n2- O menor.\n3- A média\n4- A mediana\n5- A moda.\n");
 	scanf("%d", &op);
-	
+
 	switch(op){
 		case 1:maior(n);
 				break;
