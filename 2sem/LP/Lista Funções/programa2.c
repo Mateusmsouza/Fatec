@@ -99,6 +99,7 @@ int main(){
     default: printf("ERROR 404\n Opção Inválida.\n");
   }
 
-  return 0;
   system("pause");
+  
+  return 0;
 }

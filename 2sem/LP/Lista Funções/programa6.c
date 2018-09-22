@@ -62,7 +62,7 @@ int main(){
 	}while (op !=666);
 
 
-	return 666;
+	
 	system("pause");
-
+	return 666;
 }
