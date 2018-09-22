@@ -185,10 +185,141 @@ void exercicio11(){
 	printf("\n");
 }
 
-/* 
-12 -- 21
-*/
+void exercicio12() {
+  int n;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = n; i >= 0; i--) {
+    printf("%d ", i);
+  }
+  printf("\n");
+}
 
+void exercicio13() {
+  int n;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = 0; i <= n; i++) {
+    if(i%2==0) printf("%d ", i);
+  }
+  printf("\n");
+}
+void exercicio14() {
+  int n;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = n; i >= 0; i--) {
+    if(i%2==0) printf("%d ", i);
+  }
+  printf("\n");
+}
+
+void exercicio15() {
+  int n;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = 0; i <= n; i++) {
+    if(i%2!=0) printf("%d ", i);
+  }
+  printf("\n");
+}
+
+void exercicio16() {
+  int n;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = n; i >= 0; i--) {
+    if(i%2!=0) printf("%d ", i);
+  }
+  printf("\n");
+}
+
+void exercicio17() {
+  int n, soma = 0;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n);
+  printf("\n");
+  for (int i = 0; i <= n; i++) {
+    soma += i;
+  }
+  printf("Soma de tudo: %d\n", soma);
+}
+
+void exercicio18() {
+  float maior, valor;
+  int n, vezes = 0;
+  printf("Quantos numeros serão pedidos?\n");
+  scanf("%d", &n);
+  for (int i = 0; i<n; i++) {
+    printf("\nEntre com um numero: ");
+    scanf("%f", &valor);
+    if(i == 0){
+      maior = valor;
+      vezes++;
+    } else if (valor > maior) {
+      maior = valor;
+      vezes = 1;
+    } else if (valor == maior) {
+      vezes++;
+    }
+  }
+  printf("\nMaior numero: %.2f\nEle apareceu %d\n", maior, vezes);
+}
+
+void exercicio19() {
+  srand(time(0));
+ 
+  int num = (rand() % (999-100+1)) + 100;
+  char num_str[2];
+ 
+  sprintf(num_str,"%d",num);
+ 
+  for (int i = 0; i <= sizeof(num_str); i++) {
+    printf("%c\n", num_str[i]);
+  }
+}
+
+void exercicio20() {
+  int valor = 0, pares = 0, qtd = 0;
+ 
+  while (valor != 1000) {
+    printf("Digite um valor (digite 1000 para parar):\n");
+    scanf("%d", &valor);
+    if (valor == 1000) break;
+    if (valor%2==0) pares++;
+    qtd++;
+  }
+  printf("Foram lidos %d numeros, desses, %d sao pares\n", qtd, pares);
+}
+
+void exercicio21() {
+  int n1,n2, maior, menor, soma = 0, multiplicacao = 1;
+  printf("Entre com um numero inteiro positivo:\n");
+  scanf("%d", &n1);
+  printf("Entre com outro numero inteiro positivo:\n");
+  scanf("%d", &n2);
+  printf("\n");
+ 
+  if (n1>n2) {
+    maior = n1;
+    menor = n2;
+  } else {
+    maior = n2;
+    menor = n1;
+  }
+ 
+  for (int i = menor; i <= maior; i++) {
+    if(i%2==0) soma += i;
+    else multiplicacao *= i;
+  }
+  printf("\nSoma dos pares: %d\nMultiplicacao dos impares: %d", soma, multiplicacao);
+  printf("\n");
+}
 /* Escreva um programa completo que permita a qualquer aluno introduzir, pelo teclado,
 uma sequência arbitrária de notas (válidas no intervalo de 10 a 20) e que mostre na tela,
 como resultado, a correspondente média aritmética. O número de notas com que o aluno
