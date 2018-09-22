@@ -16,4 +16,5 @@ int main(){
     strcpy(result, strcat(S1, S2));
     printf("-----------------\nAmbas concatenadas: %s\n-----------------\n", result);
 	system("pause");
+	return 0;
 }

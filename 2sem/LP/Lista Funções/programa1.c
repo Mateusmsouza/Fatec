@@ -77,8 +77,8 @@ int main()
      }
     }while(op!=4);
 
-    return 0;
     system("pause");
+    return 0;
 }
 
 int perimetro_quadrado(int lado)

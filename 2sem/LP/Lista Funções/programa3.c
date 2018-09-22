@@ -53,7 +53,7 @@ void BubbleSort(int vetor[], int tamanho)
 	{
 		printf("%d\n",vetor[l]);
 	}
-	system("pause");
+	
 }
 
 
@@ -110,4 +110,7 @@ int main(){
 				break;
 
 	}
+
+	system("pause");
+	return 0;
 }

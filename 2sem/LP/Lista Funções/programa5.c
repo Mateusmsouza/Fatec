@@ -66,6 +66,7 @@ int main(){
 		}
 	}while (op != 666);
 
-	return 0;
+
     system("pause");
+	return 0;
 }
