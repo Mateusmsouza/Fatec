@@ -24,17 +24,16 @@ typedef struct NAVE{
 }NAVE;
 
 float calcula_distancia(NAVE nave, int x, int y, int z){
-	return ((nave.x - x) * (nave.x - x)) + ((nave.y - y) * (nave.z - z)) * 1/2;
+	return sqrt((nave.x - x) * (nave.x - x)) + ((nave.y - y) * (nave.z - z));
 }
 
 int main(){
 	int xp, yp, zp;
-	//int x[4],y[4],z[4];
-	NAVE navezinha[4];
-	int controlador_ranking[4], temp;
+	NAVE navezinha[5];
+	int controlador_ranking[5], temp;
 	float mais_proximo = 999.0;
 
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		controlador_ranking[i] = 9;
 	}
@@ -42,7 +41,7 @@ int main(){
 	printf("Entre com as coordenadas do planeta separadas por virgula\n");
 	scanf("%d,%d,%d", &xp, &yp, &zp);
 	printf("Coordenadas gravadas com sucesso!\n");
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		printf("Entre com as coordenadas da nave %d separadas por vigula\n", i);
 		scanf("%d,%d,%d", &navezinha[i].x, &navezinha[i].y, &navezinha[i].z);
@@ -51,25 +50,36 @@ int main(){
 	}
 
 	// Parte abaixo para manipulação está com problema
-	for (int i = 0; i < 4; ++i)
+	printf("Posição das naves em relação ao ponto a ser explorado: (A posição 0 é a mais próxima)\n");
+	for (int i = 0; i < 5; ++i)
 	{
-		for (int j = 0; j < 4; ++j)
+		for (int j = 0; j < 5; ++j)
 		{
-			if ((navezinha[j].disancia_ate_ponto < mais_proximo) && (j != controlador_ranking[0] &&  j != controlador_ranking[1] && j != controlador_ranking[2] && j != controlador_ranking[3])){
+			if ((navezinha[j].disancia_ate_ponto < mais_proximo) && (j != controlador_ranking[0] &&  j != controlador_ranking[1] && j != controlador_ranking[2] && j != controlador_ranking[3] && j != controlador_ranking[4])){
 				mais_proximo = navezinha[j].disancia_ate_ponto;
 				temp = j;
-				printf("Teste\n");
+				
 			}
-			mais_proximo = 999;
+			
 			controlador_ranking[i] = temp; 
 
 		}
-	}
-
-	for (int i = 3; i > -1; --i)
-	{
-		printf("Lista de naves mais proximas: nave %d\n", controlador_ranking[i]);
+		printf("Nave de nº:%d esta na posição %d em relação ao ponto a ser explorado.\n", temp, i);
+		mais_proximo = 999;
 	}
 
 	return 0;
+}
+
+// Essa parte vai para o header
+float distancia_uma_dimensao(float x1,float x2){
+	return sqrt((x1 - x2));
+}
+
+float distancia_duas_dimensoes(float x1,float x2, float y1, float y2){
+	return sqrt((x1 - x2) + (y1 - y2));
+}
+
+float distancia_tres_dimensoes(float x1,float x2, float y1, float y2, float z1, float z2){
+	return sqrt((x1 - x2) + (y1 - y2) + (z1 - z2));
 }
