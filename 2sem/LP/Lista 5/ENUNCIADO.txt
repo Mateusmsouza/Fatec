@@ -1,0 +1,156 @@
+Faça os exercícios descritos, usando linguagem de programação C. Nomeie cada um dos programas como programa1, programa 2, etc. Em seguida, poste um arquivo chamado seu_nome.zip, contendo os códigos, isto é, programa1.c, programa 2.c..., bem como arquivos de texto. Importante: Não esqueça de acrescentar ao final de cada código da função main uma das instruções:
+
+
+
+system("pause");
+
+
+
+getch();
+
+
+
+1) Considerando o código do projeto BBI_STR que referes-e ao uso de biblioteca e strings, adicione à biblioteca "caracteres.h" e implemente  mais essas funções:
+
+a) int conta_vogais (char s[]);
+
+b) void substitui_vogais_por_asterisco(char s[]);
+
+c) void conta_consoante( (char s[])
+
+Modifique a  função main.c de forma  a permitir o  teste das novas funcionalidade da biblioteca.
+
+2) Faça um programa que simule um calendário permanente, isto é, o usuário digitará uma data e o programa retornará o dia da semana correspondente àquela data digitada.
+
+Dica: Use uma matriz bidimensional para armazenar os nomes dos dias da semana.
+
+Algoritmo:
+
+
+
+A = o inteiro de [(12 - Mês) ÷ 10]
+
+B = Ano - A
+
+C = Mês + (12 x A)
+
+D = o inteiro de (B ÷ 100)
+
+E = o inteiro de (D ÷ 4)
+
+F = 2 - D + E
+
+G = o inteiro de (365,25 x B)
+
+H = o inteiro de [30,6001 x (C + 1)]
+
+I = F + G + H + Dia + 5
+
+J = o resto de (I ÷ 7), onde 0=SAB 1=DOM 2=SEG 3=TER 4=QUA 5=QUI 6=SEX
+
+
+
+3) Adaptado da Maratona Interna de Programação Fatec - SJC.
+
+
+
+Exploração de planetas. Em 2142, o capitão McNamara viaja sempre com  uma equipe de cinco naves. Ao se aproximar do planeta a ser explorado, é preciso que haja uma lista ordenada com as distâncias de cada nave em relação ao planeta, de forma a iniciar os procedimentos de aterrissagem. O capitão pede sua ajuda para implementar um programa que tenha por entrada as coordenadas do planeta a ser explorado e as coordenadas de cada uma das cinco naves. Como saída, o programa fornece uma lista ordenada por distância, contendo os índices de cada nave. Exemplo:
+
+
+
+Entrada:
+
+
+
+coordenadas do planeta (xp, yp, zp) = (0,4,-1)
+
+
+
+coordenadas da nave 0 (x[0],y[0],z[0]) = (5,4,-1)
+
+
+
+coordenadas da nave 1 (x[1],y[1],z[1]) =...
+
+
+
+....
+
+
+
+coordenadas da nave 4 (x[4],y[4],z[4]) =(1,4,-1)
+
+
+
+
+
+Saída:
+
+
+
+Sequência das naves: 4,0,1,2,3
+
+
+
+Observação: crie uma biblioteca que contenha funções para cálculo de:
+
+
+
+a) distância entre dois pontos com duas dimensões
+
+
+
+b) distância entre dois pontos com três dimensões
+
+
+
+c) distância entre dois pontos com uma dimensão
+
+
+
+4) Faça um programa que leia, via teclado, duas matrizes de números inteiros do tipo 4 x 4. O programa deverá apresentar um menu para as operações de soma e subtração das duas matrizes. Após o usuário escolher a operação a ser feita, o programa mostrará a matriz resultante.
+
+
+
+5)Elabore um programa que leia cinco nomes de pessoas via teclado.  O programa deve verificar se somente caracteres alfabéticos foram digitados. O programa deve conter funções para:
+
+
+
+a) imprimir os nomes em ordem alfabética;
+
+
+
+b) imprimir os nomes em letras maiúsculas;
+
+
+
+c) informar apenas um nome, conforme índice requerido pelo usuário.
+
+
+
+
+
+6) Faça um programa para corrigir uma prova com 10 questões de múltipla escolha (a, b, c, d ou e), em uma turma com 3 alunos. Cada questão vale 1 ponto. Leia o gabarito, e para cada aluno leia sua matrícula (número inteiro) e suas respostas. Calcule e escreva, para cada aluno, sua matrícula, suas respostas, e sua nota. O percentual de aprovação, assumindo média 7.0.
+
+
+
+7) Faça um programa que receba uma palavra e calcule quantas vogais (a, e, i, o, u) possui essa palavra. Entre com um caractere (vogal ou consoante) e substitua todas as vogais da palavra dada por esse caractere.
+
+
+
+8) Faça um programa que receba uma frase e imprima-a de maneira invertida, trocando as letras A, se existir, por *.
+
+
+
+9)Usando Linguagem C, implemente um programa que leia um conjunto de caracteres digitados pelo usuário e armazene-os em um vetor.
+
+O usuário deve informar quantos caracteres serão digitados. Após a digitação dos caracteres, o programa mostrará um menu para que o usuário escolha por qual algoritmo de ordenação, dentre pelo menos quatro, ele quer que os caracteres sejam ordenados alfabeticamente.
+
+Cada algoritmo de ordenação deve ser uma função de uma biblioteca chamada "ordenando.h", criada por você.
+
+
+10)  Usando código do programa "tradutor" apresentado em sala de aula, faça o seguinte:
+
+ a) Com suas respectivas traduções, inclua no dicionário as palavras region, shepherds, field, flock, night, angel, Lord, glory, great, fear, God, good, day, city, baby, earth, peace, highest, to, in e mais 10 palavras à sua escolha.
+
+ b) Modifique o programa de forma que ele realize "tradução" do idioma inglês para português e mais dois idiomas, oferecendo ao usuário um menu para que ele escolha para qual idioma deseja a tradução.
