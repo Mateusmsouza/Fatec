@@ -1,0 +1,80 @@
+-- Tipos de dados e descrição
+
+NUMBER(t,d) Número real com tamanho t e d casas decimais
+CHAR(t) Texto de tamanho fixo t (preenche com espaços em branco)
+VARCHAR2(t) Texto Unicode com tamanho variável que ocupa, no máximo, t
+caracteres
+NCHAR(t) Texto Unicode de tamanho fixo t (preenche com espaços em branco)
+NVARCHAR2(t) Texto com tamanho variável que ocupa, no máximo, t caracteres
+DATE Uma data/hora
+TIMESTAMP Uma data/hora que conta com a opção de calcular o horário local
+antes de armazenar
+LOB Uma família de tipos (BLOB, CLOB, NCLOB, BFILE) que permite
+armazenar uma grande quantidade de dados não estruturados (como
+arquivos)
+
+-- Exemplode create table nomeando o objeto restrição
+
+CREATE TABLE ALJ_ALOJAMENTO(
+ ALJ_ID NUMBER(13),
+ ALJ_NOME VARCHAR2(20) NOT NULL,
+ ALJ_QUADRA NUMBER(3),
+ CONSTRAINT ALJ_PK PRIMARY KEY (ALJ_ID),
+ CONSTRAINT ALJ_NOME_UK UNIQUE (ALJ_NOME)
+ );
+ 
+ --Exemplo de FK e chave primaria composta
+ 
+ CREATE TABLE ALA_ALUNO_ALOJAMENTO(
+ ALN_RE NUMBER(13),
+ ALJ_ID NUMBER(13),
+ CONSTRAINT ALA_PK PRIMARY KEY (ALN_RE, ALJ_ID),
+ CONSTRAINT ALA_RE_FK FOREIGN KEY (ALN_RE) REFERENCES ALN_ALUNO
+(ALN_RE),
+ CONSTRAINT ALA_ID_FK FOREIGN KEY (ALJ_ID) REFERENCES
+ALJ_ALOJAMENTO (ALJ_ID)
+ );
+ 
+ 
+--SEQUENCE
+
+ Sequência
+• Uma sequência (SEQUENCE) é um objeto capaz de gerar um valor
+sequencial sempre que solicitado
+• Alguns dos parâmetros utilizados em sua criação:
+Parâmetro Descrição Valor Padrão
+INCREMENT BY Valor do incremento (inteiro) 1
+MINVALUE Valor mínimo da SEQUENCE -
+NOMINVALUE Utiliza um mínimo padrão (1 para ascendente e -1026 para descendente). É a configuração
+padrão. -
+MAXVALUE Valor máximo da SEQUENCE -
+NOMAXVALUE Utiliza um máximo padrão (1027 para ascendente e 1 para descendente). É a configuração
+padrão. -
+CYCLE Indica que o próximo valor após chegar ao máximo é o mínimo -
+NOCYCLE Indique que nenhum valor pode ser gerado após o máximo. É a configuração padrão. -
+
+
+-- Criando a sequence
+
+CREATE TABLE AAA_ATIVIDADE_ALUNO_ALOJAMENTO(
+ AAA_ID NUMBER(13),
+ ALN_RE NUMBER(13) NOT NULL,
+ ALJ_ID NUMBER(13) NOT NULL,
+ AAA_ATIVIDADE VARCHAR2(255) NOT NULL,
+ AAA_DATA_HORA DATE DEFAULT SYSDATE NOT NULL,
+ CONSTRAINT AAA_PK PRIMARY KEY (AAA_ID),
+ CONSTRAINT AAA_ALA_FK FOREIGN KEY (ALN_RE, ALJ_ID)
+ REFERENCES ALA_ALUNO_ALOJAMENTO (ALN_RE, ALJ_ID)
+);
+
+Criar uma sequência para uma tabela de registros de atividades
+AAA_ATIVIDADE_ALUNO_ALOJAMENTO
+• CREATE SEQUENCE AAA_SEQ;
+• Todos os valores padrão (começa em 1 e incrementa em 1)
+• Ao inserir um registro bastaria utilizar a SEQUENCE no lugar do valor
+correspondente ao ID:
+• INSERT INTO AAA_ATIVIDADE_ALUNO_ALOJAMENTO (AAA_ID, ALN_RE, ALJ_ID,
+AAA_ATIVIDADE, AAA_DATA_HORA) VALUES (AAA_SEQ.NEXTVAL, 1, 1, 'Teste',
+'20-10-14'); 
+
+--Caso o insert não execute, o valor da sequence é perdido
