@@ -1,0 +1,8 @@
+1FN -
+> Se a sua relação possui atributos multivalorados > será eliminado estes atributos (vão para outra tabela)
+> Deve-se incluir nos atributos apenas valores atômicos (dados indivisíveis)
+
+Como saber se a tabela atingiu a primeira forma normal quando:
+> A tabela apenas possuí atributos atômicos
+> Não há grupos de atributos repetidos (há apenas um dados por coluna nas linhas)
+	
