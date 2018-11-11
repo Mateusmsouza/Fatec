@@ -1,0 +1,5 @@
+sudo docker pull sath89/oracle-12c # Baixando a imagem do oracle 12 c
+CID=$(sudo docker create sath89/oracle-12c) # Cria uma variavel no shell
+sudo docker start $CID # start no container
+sudo docker logs -f $CID # este comando vai inicializar o database
+sudo docker exec -it $CID sqlplus sys as sysdba # Executa o container liberando interface para rodar SQL [password é oracle]
