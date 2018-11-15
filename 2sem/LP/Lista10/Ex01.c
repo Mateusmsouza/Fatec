@@ -21,7 +21,7 @@ int main(){
         scanf("%s", gravar);
 
         fseek(p_file,0, SEEK_END);
-        fwrite(&gravar, strlen(gravar)+'\n', 1,p_file);
+        fwrite(&gravar, strlen(gravar), 1,p_file);
 
         printf("Deseja gravar mais? insira 0 caso não queira.\n");
         scanf("%d", &decisao);
