@@ -61,4 +61,5 @@ int main(){
     		scanf("%s", string);
     		conta_consoante(string);
         }
+    system("pause");
 }

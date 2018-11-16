@@ -31,4 +31,5 @@ int main(){
 
 	printf("%s\n", reverse(statement));
 	return 0;
+    system("pause");
 }

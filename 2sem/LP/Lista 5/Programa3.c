@@ -69,6 +69,7 @@ int main(){
 	}
 
 	return 0;
+    system("pause");
 }
 
 // Essa parte vai para o header

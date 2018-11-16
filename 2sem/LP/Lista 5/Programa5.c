@@ -63,5 +63,5 @@ int main(){
 
 	alphabetical(names);
 
-
+	system("pause");
 }

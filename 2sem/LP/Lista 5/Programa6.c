@@ -44,5 +44,6 @@ int main(){
 	}
 
 	return 1;
+    system("pause");
 
 }

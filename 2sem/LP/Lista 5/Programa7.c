@@ -34,4 +34,5 @@ int main(){
 	printf("%d\n", vowels);
 	printf("New word: %s\n", word_aux);
 	return 0;
+    system("pause");
 }
