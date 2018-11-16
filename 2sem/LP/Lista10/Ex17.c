@@ -13,14 +13,19 @@ sa´ıda:
 0 1 0
 1 1 1
 */
-
 #include <stdio.h>
 #include <locale.h>
 #include <string.h>
 
 int main(){
     FILE* input;
+    char linhaArquivo[255];
+    int useOrNot;
 
     input = fopen("input.txt","r");
+    while (fgets(linhaArquivo, sizeof(linhaArquivo), input) != NULL){
+        printf("%s", linhaArquivo);
+
+    }
     return 0;
 }
