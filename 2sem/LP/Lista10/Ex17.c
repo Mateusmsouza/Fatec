@@ -25,6 +25,11 @@ typedef struct{
 }Matriz;
 Matriz matriz;
 
+typedef struct{
+    int xLinha;
+    int yColuna;
+}blankSpaces;
+
 void constructor(int numLinhas, int numColunas, int blankSpaces){
     matriz.numLinhas = numLinhas;
     matriz.numColunas = numColunas;
@@ -40,8 +45,21 @@ void getFirstLine(char *coord, char linhaArquivo[], int valoresConstructor[], in
         countConstructor++;
         coord = strtok(NULL, " ");
     }
-
+    // construindo a matriz
     constructor(valoresConstructor[0],valoresConstructor[1],valoresConstructor[2]);
+}
+
+void getOtherLine(char *pointer, char linhaArquivo[], int linha, blankSpaces *ponteiroSpaces ){
+    pointer = strtok(linhaArquivo, " ");
+    int gamb = 1;
+    while (pointer != NULL){
+      if (gamb == 1){
+        ponteiroSpaces[linha].xLinha = strtol(pointer,NULL,10);
+      }else{
+        ponteiroSpaces[linha].yColuna = strtol(pointer,NULL,10);
+      }
+      gamb++;
+    }
 }
 
 
@@ -53,9 +71,12 @@ int main(){
     char linhaArquivo[255];
     char c;
     char *coord;
+    char *pointer;
+    blankSpaces *ponteiroSpaces;
     int valoresConstructor[3];
     int countConstructor = 0;
     int line = 1;
+
 
 
 
@@ -69,8 +90,25 @@ int main(){
 
     }
 
+    // alocando no ponteiro um vetor dinâmico de blankSpaces
+    ponteiroSpaces = (blankSpaces *) malloc((line-1) * sizeof(blankSpaces));
+
+    line = 1;
+    while (fgets(linhaArquivo, sizeof(linhaArquivo), input) != NULL){
+      if (line != 1){
+         getOtherLine(pointer, linhaArquivo, line, ponteiroSpaces);
+      }
+      line++;
+    }
+
+    // testando a função de blanks
+    printf("Teste de blank\n");
+    for(int i=2; i < line; i++){
+      printf("Linha da blank %d: %d\n", line, ponteiroSpaces[i].xLinha);
+      printf("Coluna da blank %d: %d\n", line, ponteiroSpaces[i].yColuna);
+    }
     // Construindo a matriz
-    for (int linhas = 0 ; linhas <= matriz.numColunas; linhas++){
+    for (int linhas = 1 ; linhas <= matriz.numColunas; linhas++){
         for (int colunas = 0 ; colunas < matriz.numLinhas; colunas++){
             printf("1 ");
         }
