@@ -57,17 +57,31 @@ void listarArquivo(FILE *banco){
     fclose(banco);
 }
 
+// Listar Pessoas com primeira letra do nome igual ao caractere passado
+void listarArquivoNome(FILE *banco, char letra){
+    char lineFile[255];
+    banco = fopen("database.txt", "r");
+
+    while(fgets(lineFile, 255, banco) != NULL){
+        if (lineFile[0] == letra){
+            printf("%s", lineFile);
+        }
+    }
+    fclose(banco);
+}
+
 int main(int argc, char const *argv[])
 {
 	setlocale(LC_ALL,"portuguese");
 
 	FILE *banco;
 	int decisao;
+	char aux;
 	char nome[255];
 	char telefone[20];
 	char aniversario[20];
 
-	printf("Funções:\nAdiciona novo contato:1\nLista Arquivos: 4\n");
+	printf("Funções:\nAdiciona novo contato:1\nLista Arquivos: 4\nLista Nomes começados por ...:5\n");
 	scanf("%d", &decisao);
 
 	switch(decisao){
@@ -89,6 +103,12 @@ int main(int argc, char const *argv[])
             listarArquivo(banco);
             break;
 
+        case 5:
+            printf("Insira uma letra\n");
+            fflush(stdin);
+            scanf("%c", &aux);
+            listarArquivoNome(banco, aux);
+            break;
 
 		default:
 			printf("Opção inválida\n");
