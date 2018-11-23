@@ -8,6 +8,14 @@ nome, o telefone e o aniversario (dia e m ´ es). O programa deve permitir ˆ
 (e) listar os contatos cujo nome inicia com uma dada letra
 (f) imprimir os aniversariantes do mes.
 */
+
+// Verificando de o OS host é Windows ou Linux
+#ifdef __unix__
+#define ISWINDOWS 0
+#elif defined(_WIN32) || defined(WIN32)
+#define ISWINDOWS 1
+#endif // __unix__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -18,7 +26,12 @@ void adicionarContato(FILE *banco, char name[], char telefone[], char aniversari
 	fseek(banco,0, SEEK_END);
 	fprintf(banco, "%s %s %s\n",name, telefone, aniversario );
 	printf("Contato Gravado com sucesso.\n");
-	system("clear");
+    // Limpando a tela
+	#ifdef ISWINDOWS
+        system("cls");
+    #else
+        system("clear");
+	#endif // ISWINDOWS
 	fclose(banco);
 }
 
@@ -39,6 +52,28 @@ void removerContato(FILE *banco, char name[]){
 			if (1 == strcmp(palavraArquivo,name)){
 				fprintf(banco, "\0");
 			}
+			palavraArquivo = strtok(NULL, " ");
+		}
+	}
+	printf("Removido\n");
+	fclose(banco);
+}
+
+void buscarContatoNome(FILE *banco, char name[]){
+    char lineFile[255];
+	char *palavraArquivo;
+
+	banco = fopen("database.txt", "a");
+
+
+
+	while(fgets(lineFile, 255, banco) != NULL){
+		palavraArquivo = strtok(lineFile," ");
+
+		while(palavraArquivo != NULL){
+            if ()
+// escreve a logica da procura aqui
+
 			palavraArquivo = strtok(NULL, " ");
 		}
 	}
@@ -99,9 +134,16 @@ int main(int argc, char const *argv[])
 			removerContato(banco, nome);
 
 			break;
+        case 3:
+            printf("Entre com o nome a ser buscado\n");
+
+            break;
         case 4:
             listarArquivo(banco);
             break;
+
+        case 3:
+
 
         case 5:
             printf("Insira uma letra\n");
