@@ -106,6 +106,39 @@ void ExcluirRegistro(char cod[], char mes[]){
   listarDatabase();
 }
 
+void AlteraValorVenda(char cod[], char mes[], char novoValor[]){
+char lineFile[255];
+	FILE *databasetemp;
+  FILE *database;
+  char *pointer;
+
+	database = fopen("database.dat", "r");
+  databasetemp = fopen("databasetemp.dat", "w");
+  // Criando um novo arquivo sem o contato que será excluído
+	while(fgets(lineFile, 255, database) != NULL){
+      if (!strstr(lineFile, cod) && !strstr(lineFile, mes) && !strstr(lineFile, novoValor)){
+        fprintf(databasetemp, lineFile);
+      }else{
+        printf("Registro a ser alterado:%s\n", lineFile);  // Arrranjar uma maneira de colocar o novo valor no meio da string original
+        pointer = strtok(lineFile," ");
+        while(pointer != NULL){
+
+          printf("%s", *pointer);
+          pointer = strtok(NULL, " ");
+        }
+      }
+		}
+  printf("Gravando alterações no banco...\n");
+  // Código abaixo irá remover o arquivo original e renomear o arquivo temporário gravado sem o contato excluído
+  if (remove("database.dat")==0 && rename("databasetemp.dat","database.dat")==0){
+    printf("Mudanças gravadas com sucesso.\n");
+  }else{
+    printf("Algo de errado ocorreu na gravação!\n");
+  }
+	fclose(database);
+  fclose(databasetemp);
+  listarDatabase();
+}
 // Listar o database
 int listarDatabase(){
   char lineFile[255];
@@ -127,10 +160,17 @@ int listarDatabase(){
   compare = 0;
   return isValid;
 }
+
+void deletaDatabase(){
+
+  remove("database.dat");
+  printf("database removido.\n");
+}
 int main(){
   int finaliza = 1;
   char cod_aux[4];
   char mes_venda[10];
+  char novo_valor_venda[10];
 
   do{
     printf("Selecione uma opção:\n0-Finalizar o programa \n1-Criar novo database [Falta implementar]\n2-Incluir novo registro no database\n3-Excluir um determinado vendedor no arquivo\n4-Alterar o valor de uma venda no arquivo\n5-Imprimir o database\n6-Excluir o arquivo de dados\n");
@@ -153,10 +193,19 @@ int main(){
         scanf("%s",mes_venda);
         ExcluirRegistro(cod_aux, mes_venda);
         break;
+      case 4:
+        printf("Alterar valor de uma venda. Insira o código, mês e novo valor.\n");
+        scanf("%s",cod_aux);
+        scanf("%s",mes_venda);
+        scanf("%s", novo_valor_venda);
+        AlteraValorVenda(cod_aux, mes_venda, novo_valor_venda);
       case 5:
         limpaTela();
         printf("Listar os registros do database...\n");
         listarDatabase();
+      case 6:
+        printf("Remover database\n");
+        deletaDatabase();
       default:
         break;
     }
