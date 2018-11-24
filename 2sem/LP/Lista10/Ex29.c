@@ -3,11 +3,11 @@ guintes campos: codigo_vendedor, nome_vendedor, valor_da_venda e mes.
 
 A manipulacao do arquivo em quest̃aóe feita atrav́es da execuc ̧̃ao das operac ̧̃oes dispo-nibilizadas pelo seguinte menu:
 
-•Criar o arquivo de dados;
-•Incluir um determinado registro no arquivo;
+•Criar o arquivo de dados; FEITO
+•Incluir um determinado registro no arquivo; FEITO
 •Excluir um determinado vendedor no arquivo;
 •Alterar o valor de uma venda no arquivo;
-•Imprimir os registros na sáıda padr̃ao;
+•Imprimir os registros na sáıda padr̃ao; FEITO
 •Excluir o arquivo de dados;
 •Finalizar o programa.
 
@@ -52,15 +52,29 @@ void incluiNovoRegistro(){
   char codigoVendedor[4], nomeVendedor[255], valorDaVenda[10], mesVenda[10];
   FILE *database;
   
-  printf("Entre com:\nCodigo Vendedor, Nome Vendedor, Valor da Venda, Mes da Venda");
+  printf("Entre com:\nCodigo Vendedor, Nome Vendedor, Valor da Venda, Mes da Venda(numerico)\n");
   scanf("%s", codigoVendedor);
   scanf("%s", nomeVendedor);
   scanf("%s", valorDaVenda);
   scanf("%s", mesVenda);
 
+  // falta implementar validação para código e mês não repetirem
   database = fopen("database.dat","a");
   fprintf(database, "codigo_vendedor:%s nome_vendedor:%s valor_da_venda:%s mes:%s", codigoVendedor,nomeVendedor,valorDaVenda, mesVenda);
   fclose(database);
+}
+
+// Listar o database
+void listarDatabase(){
+  char lineFile[255];
+  FILE* database;
+
+  database = fopen("database.dat","r");
+  while(fgets(lineFile, 255, database)!=NULL){
+    printf("%s\n", lineFile);
+  }
+  printf("--------------------------------------");
+  getchar();
 }
 int main(){
   int finaliza = 1;
@@ -73,8 +87,16 @@ int main(){
         limpaTela();
         printf("Criando novo database....\n");
         criaDatabase();
-
         break;
+      case 2:
+        limpaTela();
+        printf("Inserir novo registro no database...\n");
+        incluiNovoRegistro();
+        break;
+      case 5:
+        limpaTela();
+        printf("Listar os registros do database...\n");
+        listarDatabase();
       default:
         break;
     }
