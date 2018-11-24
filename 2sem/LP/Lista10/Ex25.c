@@ -39,22 +39,29 @@ void adicionarContato(FILE *banco, char name[], char telefone[], char aniversari
 // Fun��o para remover contato, falta terminar
 void removerContato(FILE *banco, char name[]){
 	char lineFile[255];
-	char *palavraArquivo;
+	FILE *databasetemp;
 
-	banco = fopen("database.txt", "a");
+	banco = fopen("database.txt", "r");
+  databasetemp = fopen("databasetemp.txt", "w");
+  // Criando um novo arquivo sem o contato que será excluído
 	while(fgets(lineFile, 255, banco) != NULL){
-		palavraArquivo = strtok(lineFile," ");
-
-		while(palavraArquivo != NULL){
-
-			if (1 == strcmp(palavraArquivo,name)){
-				fprintf(banco, "\0");
-			}
-			palavraArquivo = strtok(NULL, " ");
+      
+      if (!strstr(lineFile, name)){
+        
+        fprintf(databasetemp, lineFile);
+      }else{
+        printf("Contato a ser removido:%s\n", lineFile);  
+      }
 		}
-	}
-	printf("Removido\n");
+  printf("Gravando alterações no banco...\n");
+  // Código abaixo irá remover o arquivo original e renomear o arquivo temporário gravado sem o contato excluído
+  if (remove("database.txt")==0 && rename("databasetemp.txt","database.txt")==0){
+    printf("Mudanças gravadas com sucesso.\n");
+  }else{
+    printf("Algo de errado ocorreu na gravação!\n");
+  }
 	fclose(banco);
+  fclose(databasetemp);
 }
 
 // Função que busca o contato pelo nome
@@ -118,7 +125,7 @@ int main(int argc, char const *argv[])
 	char telefone[20];
 	char aniversario[20];
 
-	printf("1-Fun��es:\nAdiciona novo contato:1\n2-Remover contato pelo nome\n3-Buscar contato pelo nome\n4-Lista Arquivos\n5-Lista Nomes come�ados por uma letra\n6-Aniversariantes do mês");
+	printf("1-Fun��es:\nAdiciona novo contato:1\n2-Remover contato pelo nome\n3-Buscar contato pelo nome\n4-Lista Arquivos\n5-Lista Nomes come�ados por uma letra\n6-Aniversariantes do mês\n");
 	scanf("%d", &decisao);
 
 	switch(decisao){
@@ -132,7 +139,7 @@ int main(int argc, char const *argv[])
 
     // Falta implementar
 		case 2:
-			printf("Entre com: Nome");
+			printf("Entre com: Nome\n");
 			scanf("%s", nome);
 			removerContato(banco, nome);
 
