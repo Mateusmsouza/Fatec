@@ -5,11 +5,11 @@ A manipulacao do arquivo em quest̃aóe feita atrav́es da execuc ̧̃ao das op
 
 •Criar o arquivo de dados; FEITO
 •Incluir um determinado registro no arquivo; FEITO
-•Excluir um determinado vendedor no arquivo;
-•Alterar o valor de uma venda no arquivo;
+•Excluir um determinado vendedor no arquivo; FEITO
+•Alterar o valor de uma venda no arquivo; 
 •Imprimir os registros na sáıda padr̃ao; FEITO
-•Excluir o arquivo de dados;
-•Finalizar o programa.
+•Excluir o arquivo de dados; 
+•Finalizar o programa. FEITO
 
 Os registros devem estar ordenados no arquivo, de forma crescente, de acordo com asinformac ̧̃oes contidas 
 nos campos codigovendedor e mes. Ñao deve existir mais de umregistro no arquivo com mesmos valores nos 
@@ -36,6 +36,12 @@ void limpaTela(){
 	#endif // ISWINDOWS
 }
 
+// auxvar
+int compare = 0;
+char codigo[4];
+char mes[10];
+/////
+
 // Funções do menu
 void criaDatabase(){
   FILE *database;
@@ -58,26 +64,73 @@ void incluiNovoRegistro(){
   scanf("%s", valorDaVenda);
   scanf("%s", mesVenda);
 
-  // falta implementar validação para código e mês não repetirem
-  database = fopen("database.dat","a");
-  fprintf(database, "codigo_vendedor:%s nome_vendedor:%s valor_da_venda:%s mes:%s", codigoVendedor,nomeVendedor,valorDaVenda, mesVenda);
-  fclose(database);
+  // Passando as variaveis para a função listarDatabase validar
+  compare = 1;
+  strcpy(codigo, codigoVendedor);
+  strcpy(mes, mesVenda);
+  if (listarDatabase()==1){
+    database = fopen("database.dat","a");
+    fprintf(database, "codigo_vendedor:%s nome_vendedor:%s valor_da_venda:%s mes:%s", codigoVendedor,nomeVendedor,valorDaVenda, mesVenda);
+    fclose(database);
+  }else{
+    printf("WARNING:\n");
+    printf("Já existe um vendedor com este código e mês. O registro não será criado.\n");
+  }
+
+}
+
+void ExcluirRegistro(char cod[], char mes[]){
+  char lineFile[255];
+	FILE *databasetemp;
+  FILE *database;
+
+	database = fopen("database.dat", "r");
+  databasetemp = fopen("databasetemp.dat", "w");
+  // Criando um novo arquivo sem o contato que será excluído
+	while(fgets(lineFile, 255, database) != NULL){
+      if (!strstr(lineFile, cod) && !strstr(lineFile, mes)){
+        fprintf(databasetemp, lineFile);
+      }else{
+        printf("Registro a ser removido:%s\n", lineFile);  
+      }
+		}
+  printf("Gravando alterações no banco...\n");
+  // Código abaixo irá remover o arquivo original e renomear o arquivo temporário gravado sem o contato excluído
+  if (remove("database.dat")==0 && rename("databasetemp.dat","database.dat")==0){
+    printf("Mudanças gravadas com sucesso.\n");
+  }else{
+    printf("Algo de errado ocorreu na gravação!\n");
+  }
+	fclose(database);
+  fclose(databasetemp);
+  listarDatabase();
 }
 
 // Listar o database
-void listarDatabase(){
+int listarDatabase(){
   char lineFile[255];
   FILE* database;
+  int isValid = 1;
 
   database = fopen("database.dat","r");
   while(fgets(lineFile, 255, database)!=NULL){
     printf("%s\n", lineFile);
+    
+    if(compare = 1){
+      if (strstr(lineFile, codigo) && strstr(lineFile,mes)){
+        isValid = 0;
+      }
+    }
   }
-  printf("--------------------------------------");
+  printf("--------------------------------------\n");
   getchar();
+  compare = 0;
+  return isValid;
 }
 int main(){
   int finaliza = 1;
+  char cod_aux[4];
+  char mes_venda[10];
 
   do{
     printf("Selecione uma opção:\n0-Finalizar o programa \n1-Criar novo database [Falta implementar]\n2-Incluir novo registro no database\n3-Excluir um determinado vendedor no arquivo\n4-Alterar o valor de uma venda no arquivo\n5-Imprimir o database\n6-Excluir o arquivo de dados\n");
@@ -92,6 +145,13 @@ int main(){
         limpaTela();
         printf("Inserir novo registro no database...\n");
         incluiNovoRegistro();
+        break;
+      case 3:
+        limpaTela();
+        printf("Excluir um registro. Insira o código e o mês.\n");
+        scanf("%s",cod_aux);
+        scanf("%s",mes_venda);
+        ExcluirRegistro(cod_aux, mes_venda);
         break;
       case 5:
         limpaTela();
