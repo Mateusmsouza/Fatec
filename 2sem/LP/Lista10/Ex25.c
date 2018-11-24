@@ -2,7 +2,7 @@
 Fac�a um programa gerenciar uma agenda de contatos. Para cada contato armazene o
 nome, o telefone e o aniversario (dia e m � es). O programa deve permitir �
 (a) inserir contato
-(b) remover contato
+(b) remover contato # falta
 (c) pesquisar um contato pelo nome
 (d) listar todos os contatos
 (e) listar os contatos cujo nome inicia com uma dada letra
@@ -96,6 +96,17 @@ void listarArquivoNome(FILE *banco, char letra){
     fclose(banco);
 }
 
+void buscarPeloMes(FILE *banco, char data[]){
+    char lineFile[255];
+    banco = fopen("database.txt", "r");
+
+    while(fgets(lineFile,sizeof(lineFile), banco)!= NULL){
+      if (strstr(lineFile, data)){
+        printf("Encontrado: %s", lineFile);
+      }
+    }
+}
+
 int main(int argc, char const *argv[])
 {
 	setlocale(LC_ALL,"portuguese");
@@ -107,7 +118,7 @@ int main(int argc, char const *argv[])
 	char telefone[20];
 	char aniversario[20];
 
-	printf("1-Fun��es:\nAdiciona novo contato:1\n2-Remover contato pelo nome\n3-Buscar contato pelo nome\n4-Lista Arquivos\n5-Lista Nomes come�ados por uma letra\n");
+	printf("1-Fun��es:\nAdiciona novo contato:1\n2-Remover contato pelo nome\n3-Buscar contato pelo nome\n4-Lista Arquivos\n5-Lista Nomes come�ados por uma letra\n6-Aniversariantes do mês");
 	scanf("%d", &decisao);
 
 	switch(decisao){
@@ -142,6 +153,11 @@ int main(int argc, char const *argv[])
         listarArquivoNome(banco, aux);
         break;
 
+    case 6:
+        printf("Insira um mês (número dele)\n");
+        scanf("%s", aniversario);
+        buscarPeloMes(banco, aniversario);
+        break;
 		default:
 			printf("Op��o inv�lida\n");
 	}
