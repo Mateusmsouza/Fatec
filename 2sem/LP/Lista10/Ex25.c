@@ -1,14 +1,12 @@
-/*
+﻿/*
 Fac�a um programa gerenciar uma agenda de contatos. Para cada contato armazene o
 nome, o telefone e o aniversario (dia e m � es). O programa deve permitir �
 (a) inserir contato
-<<<<<<< HEAD
 (b) remover contato
 (c) pesquisar um contato pelo nome # falta este
 =======
 (b) remover contato # falta
 (c) pesquisar um contato pelo nome
->>>>>>> 8505895434866831f73582128fe841637ba63e52
 (d) listar todos os contatos
 (e) listar os contatos cujo nome inicia com uma dada letra # falta este
 (f) imprimir os aniversariantes do mes.
@@ -73,7 +71,6 @@ void removerContato(FILE *banco, char name[]){
 void buscarContatoNome(FILE *banco, char name[]){
   char lineFile[255];
 	char *palavraArquivo;
-<<<<<<< HEAD
 
 	banco = fopen("database.txt", "a");
 
@@ -101,7 +98,6 @@ void buscarContatoNome(FILE *banco, char name[]){
           printf("Encontrado: %s", lineFile);
         }
   }
->>>>>>> 8505895434866831f73582128fe841637ba63e52
 	fclose(banco);
 }
 
@@ -169,7 +165,6 @@ int main(int argc, char const *argv[])
 			scanf("%s", nome);
 			removerContato(banco, nome);
 
-<<<<<<< HEAD
 			break;
         case 3: // deu bosta
             printf("Entre com o nome a ser buscado\n");
@@ -187,7 +182,6 @@ int main(int argc, char const *argv[])
             listarArquivoNome(banco, aux);
             break;
 
-=======
      break;
 
     case 3:
@@ -210,7 +204,6 @@ int main(int argc, char const *argv[])
         scanf("%s", aniversario);
         buscarPeloMes(banco, aniversario);
         break;
->>>>>>> 8505895434866831f73582128fe841637ba63e52
 		default:
 			printf("Op��o inv�lida\n");
 	}
