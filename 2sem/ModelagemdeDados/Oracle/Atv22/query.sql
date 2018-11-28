@@ -25,7 +25,11 @@ CREATE TABLE fle_filme(
   fle_fkfle_nome VARCHAR2(100), -- será fk
   fle_fkfle_lancamento NUMBER(4),
 
-  CONSTRAINT FLE_PK1 PRIMARY KEY (fle_nome)
+  CONSTRAINT FLE_PK1 PRIMARY KEY (fle_nome),
+  CONSTRAINT FLE_PK2 UNIQUE (fle_ano_lancamento),
+  
+  CONSTRAINT FLE_FK1 FOREIGN KEY (fle_fkfle_nome) REFERENCES fle_filme (fle_nome),
+  CONSTRAINT FLE_FK2 FOREIGN KEY (fle_fkfle_lancamento) REFERENCES fle_filme (fle_ano_lancamento)
 );
 
 CREATE TABLE ast_assiste(
@@ -38,8 +42,9 @@ CREATE TABLE ast_assiste(
   CONSTRAINT AST_PK2 UNIQUE (ast_flefk_nome),
   CONSTRAINT AST_PK3 UNIQUE (ast_flefk_ano_lancamento),
   
-  CONSTRAINT FK_PK FOREIGN KEY (ast_usrfk_email) REFERENCES usr_usuario (usr_email),
-  CONSTRAINT FK_PK2 FOREIGN KEY (ast_flefk_nome) REFERENCES fle_filme (fle_nome) -- tá com pau
+  CONSTRAINT AST_FK FOREIGN KEY (ast_usrfk_email) REFERENCES usr_usuario (usr_email),
+  CONSTRAINT AST_FK2 FOREIGN KEY (ast_flefk_nome) REFERENCES fle_filme (fle_nome),
+  CONSTRAINT AST_FK3 FOREIGN KEY (ast_flefk_ano_lancamento) REFERENCES fle_filme (fle_ano_lancamento)
 
 );
 
