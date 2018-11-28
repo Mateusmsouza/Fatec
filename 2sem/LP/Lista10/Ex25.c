@@ -3,9 +3,9 @@ Fac¸a um programa gerenciar uma agenda de contatos. Para cada contato armazene o
 nome, o telefone e o aniversario (dia e m ´ es). O programa deve permitir ˆ
 (a) inserir contato
 (b) remover contato
-(c) pesquisar um contato pelo nome
+(c) pesquisar um contato pelo nome # falta este
 (d) listar todos os contatos
-(e) listar os contatos cujo nome inicia com uma dada letra
+(e) listar os contatos cujo nome inicia com uma dada letra # falta este
 (f) imprimir os aniversariantes do mes.
 */
 
@@ -65,19 +65,21 @@ void buscarContatoNome(FILE *banco, char name[]){
 
 	banco = fopen("database.txt", "a");
 
-
-
 	while(fgets(lineFile, 255, banco) != NULL){
+        printf(("-------"));
 		palavraArquivo = strtok(lineFile," ");
-
+//
 		while(palavraArquivo != NULL){
-            if ()
-// escreve a logica da procura aqui
+		    printf("%s", lineFile);
+            if (strcmp(palavraArquivo,name)==1){
 
-			palavraArquivo = strtok(NULL, " ");
+                printf("%s", lineFile);
+            }
+// escreve a logica da procura aqui
+            palavraArquivo = strtok(NULL, " ");
 		}
+
 	}
-	printf("Removido\n");
 	fclose(banco);
 }
 
@@ -93,12 +95,12 @@ void listarArquivo(FILE *banco){
 }
 
 // Listar Pessoas com primeira letra do nome igual ao caractere passado
-void listarArquivoNome(FILE *banco, char letra){
+void listarArquivoNome(FILE *banco, char name[]){
     char lineFile[255];
     banco = fopen("database.txt", "r");
 
     while(fgets(lineFile, 255, banco) != NULL){
-        if (lineFile[0] == letra){
+        if (lineFile[0] == name){
             printf("%s", lineFile);
         }
     }
@@ -134,19 +136,17 @@ int main(int argc, char const *argv[])
 			removerContato(banco, nome);
 
 			break;
-        case 3:
+        case 3: // deu bosta
             printf("Entre com o nome a ser buscado\n");
-
+            scanf("%s", nome);
+            buscarContatoNome(banco,nome);
             break;
         case 4:
             listarArquivo(banco);
             break;
 
-        case 3:
-
-
         case 5:
-            printf("Insira uma letra\n");
+            printf("Insira um nome\n");
             fflush(stdin);
             scanf("%c", &aux);
             listarArquivoNome(banco, aux);
