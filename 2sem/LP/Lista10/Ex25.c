@@ -1,15 +1,20 @@
 /*
-Fac¸a um programa gerenciar uma agenda de contatos. Para cada contato armazene o
-nome, o telefone e o aniversario (dia e m ´ es). O programa deve permitir ˆ
+Facï¿½a um programa gerenciar uma agenda de contatos. Para cada contato armazene o
+nome, o telefone e o aniversario (dia e m ï¿½ es). O programa deve permitir ï¿½
 (a) inserir contato
+<<<<<<< HEAD
 (b) remover contato
 (c) pesquisar um contato pelo nome # falta este
+=======
+(b) remover contato # falta
+(c) pesquisar um contato pelo nome
+>>>>>>> 8505895434866831f73582128fe841637ba63e52
 (d) listar todos os contatos
 (e) listar os contatos cujo nome inicia com uma dada letra # falta este
 (f) imprimir os aniversariantes do mes.
 */
 
-// Verificando de o OS host é Windows ou Linux
+// Verificando de o OS host ï¿½ Windows ou Linux
 #ifdef __unix__
 #define ISWINDOWS 0
 #elif defined(_WIN32) || defined(WIN32)
@@ -18,9 +23,10 @@ nome, o telefone e o aniversario (dia e m ´ es). O programa deve permitir ˆ
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
-// Função gravar contato
+// Funï¿½ï¿½o gravar contato
 void adicionarContato(FILE *banco, char name[], char telefone[], char aniversario[]){
 	banco = fopen("database.txt", "a");
 	fseek(banco,0, SEEK_END);
@@ -35,33 +41,39 @@ void adicionarContato(FILE *banco, char name[], char telefone[], char aniversari
 	fclose(banco);
 }
 
-// Função para remover contato
+// Funï¿½ï¿½o para remover contato, falta terminar
 void removerContato(FILE *banco, char name[]){
 	char lineFile[255];
-	char *palavraArquivo;
+	FILE *databasetemp;
 
-	banco = fopen("database.txt", "a");
-
-
-
+	banco = fopen("database.txt", "r");
+  databasetemp = fopen("databasetemp.txt", "w");
+  // Criando um novo arquivo sem o contato que serÃ¡ excluÃ­do
 	while(fgets(lineFile, 255, banco) != NULL){
-		palavraArquivo = strtok(lineFile," ");
-
-		while(palavraArquivo != NULL){
-
-			if (1 == strcmp(palavraArquivo,name)){
-				fprintf(banco, "\0");
-			}
-			palavraArquivo = strtok(NULL, " ");
+      
+      if (!strstr(lineFile, name)){
+        
+        fprintf(databasetemp, lineFile);
+      }else{
+        printf("Contato a ser removido:%s\n", lineFile);  
+      }
 		}
-	}
-	printf("Removido\n");
+  printf("Gravando alteraÃ§Ãµes no banco...\n");
+  // CÃ³digo abaixo irÃ¡ remover o arquivo original e renomear o arquivo temporÃ¡rio gravado sem o contato excluÃ­do
+  if (remove("database.txt")==0 && rename("databasetemp.txt","database.txt")==0){
+    printf("MudanÃ§as gravadas com sucesso.\n");
+  }else{
+    printf("Algo de errado ocorreu na gravaÃ§Ã£o!\n");
+  }
 	fclose(banco);
+  fclose(databasetemp);
 }
 
+// FunÃ§Ã£o que busca o contato pelo nome
 void buscarContatoNome(FILE *banco, char name[]){
-    char lineFile[255];
+  char lineFile[255];
 	char *palavraArquivo;
+<<<<<<< HEAD
 
 	banco = fopen("database.txt", "a");
 
@@ -80,6 +92,16 @@ void buscarContatoNome(FILE *banco, char name[]){
 		}
 
 	}
+=======
+  char fodase[255];
+  banco = fopen("database.txt", "r");
+
+	while(fgets(lineFile, 255, banco) != NULL){
+        if (strstr(lineFile, name)){
+          printf("Encontrado: %s", lineFile);
+        }
+  }
+>>>>>>> 8505895434866831f73582128fe841637ba63e52
 	fclose(banco);
 }
 
@@ -98,13 +120,24 @@ void listarArquivo(FILE *banco){
 void listarArquivoNome(FILE *banco, char name[]){
     char lineFile[255];
     banco = fopen("database.txt", "r");
-
+    
     while(fgets(lineFile, 255, banco) != NULL){
         if (lineFile[0] == name){
             printf("%s", lineFile);
         }
     }
     fclose(banco);
+}
+
+void buscarPeloMes(FILE *banco, char data[]){
+    char lineFile[255];
+    banco = fopen("database.txt", "r");
+
+    while(fgets(lineFile,sizeof(lineFile), banco)!= NULL){
+      if (strstr(lineFile, data)){
+        printf("Encontrado: %s", lineFile);
+      }
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -118,7 +151,7 @@ int main(int argc, char const *argv[])
 	char telefone[20];
 	char aniversario[20];
 
-	printf("Funções:\nAdiciona novo contato:1\nLista Arquivos: 4\nLista Nomes começados por ...:5\n");
+	printf("1-Funï¿½ï¿½es:\nAdiciona novo contato:1\n2-Remover contato pelo nome\n3-Buscar contato pelo nome\n4-Lista Arquivos\n5-Lista Nomes comeï¿½ados por uma letra\n6-Aniversariantes do mÃªs\n");
 	scanf("%d", &decisao);
 
 	switch(decisao){
@@ -130,11 +163,13 @@ int main(int argc, char const *argv[])
 			adicionarContato(banco, nome, telefone, aniversario);
 			break;
 
+    // Falta implementar
 		case 2:
-			printf("Entre com: Nome, Telefone, Aniversiao [dd/mm/aa]\n");
+			printf("Entre com: Nome\n");
 			scanf("%s", nome);
 			removerContato(banco, nome);
 
+<<<<<<< HEAD
 			break;
         case 3: // deu bosta
             printf("Entre com o nome a ser buscado\n");
@@ -152,8 +187,32 @@ int main(int argc, char const *argv[])
             listarArquivoNome(banco, aux);
             break;
 
+=======
+     break;
+
+    case 3:
+        printf("Entre com o nome a ser buscado\n");
+        scanf("%s",nome);
+        buscarContatoNome(banco, nome);
+        break;
+    case 4:
+        listarArquivo(banco);
+        break;
+    case 5:
+        printf("Insira uma letra\n");
+        fflush(stdin);
+        scanf("%c", &aux);
+        listarArquivoNome(banco, aux);
+        break;
+
+    case 6:
+        printf("Insira um mÃªs (nÃºmero dele)\n");
+        scanf("%s", aniversario);
+        buscarPeloMes(banco, aniversario);
+        break;
+>>>>>>> 8505895434866831f73582128fe841637ba63e52
 		default:
-			printf("Opção inválida\n");
+			printf("Opï¿½ï¿½o invï¿½lida\n");
 	}
 	return 0;
 }
