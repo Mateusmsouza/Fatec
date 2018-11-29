@@ -1,11 +1,11 @@
-/*Fac¸a um programa que receba dois arquivos do usuario, e crie um terceiro arquivo com ´
-o conteudo dos dois primeiros juntos (o conte ´ udo do primeiro seguido do conte ´ udo do ´
-segundo).
-*/
 #include <string.h>
 #include <stdio.h>
 #include <locale.h>
 
+/*
+Faca um programa que receba dois arquivos do usuario, e crie um terceiro arquivo com
+o conteudo dos dois primeiros juntos (o conte udo do primeiro seguido do conteudo do segundo).
+*/
 
 int main(){
     setlocale(LC_ALL, "portuguese");
@@ -19,11 +19,12 @@ int main(){
     printf("Primeiro arquivo\n");
     gets(nameFile);
     p1 = fopen(nameFile, "r");
+
     printf("Segundo arquivo\n");
     gets(nameFile);
     p2 = fopen(nameFile, "r");
 
-    if (p2 == NULL || p1 == NULL){
+    if (p2 == NULL || p1 == NULL) {
         printf("Arquivos passados nao localizados. Finalizando execucao.\n");
         return 1;
     }
@@ -38,7 +39,6 @@ int main(){
         fwrite(&buffer, strlen(buffer), 1,p3);
     }
 
-    printf("Execucao finalizada com sucesso.")
     fclose(p3);
     return 0;
 }

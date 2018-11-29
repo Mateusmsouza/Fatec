@@ -1,0 +1,5 @@
+Rio de Janeiro=6520266
+Brasilia=3039444
+Belo Horizonte=2523794
+Manaus=2130264
+Curitiba=1908359
