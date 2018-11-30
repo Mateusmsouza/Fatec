@@ -210,6 +210,9 @@ int main(){
         break;
     }
   }while(finaliza!=0);
+  getch();
+
+
 
   return 0;
 }

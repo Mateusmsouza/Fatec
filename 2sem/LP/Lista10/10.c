@@ -49,6 +49,6 @@ int main() {
   res = fopen("maiorcidade.txt", "w");
   fprintf(res, "%s = %d", maiorCidade, maiorPop);
   fclose(res);
-
+	getch();
   return 0;
 }

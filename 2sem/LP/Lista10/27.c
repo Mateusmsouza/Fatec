@@ -14,5 +14,8 @@ int main() {
 
      printf("%d linhas", cont);
 
-    return 0;
+    
+	getch();
+	return 0;
+
 }

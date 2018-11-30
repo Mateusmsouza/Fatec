@@ -38,7 +38,7 @@ int main(){
         fseek(p3,0, SEEK_END);
         fwrite(&buffer, strlen(buffer), 1,p3);
     }
-
+	getch();
     fclose(p3);
     return 0;
 }

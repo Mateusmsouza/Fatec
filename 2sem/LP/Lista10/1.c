@@ -27,5 +27,6 @@ int main(){
     }
 
     fclose(p_file);
+	getch();
     return 0;
 }

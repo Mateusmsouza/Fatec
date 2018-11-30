@@ -17,6 +17,6 @@ int main () {
 
     fclose(saida);
     fclose(arquivo);
-
+	getch();
     return 0;
 }

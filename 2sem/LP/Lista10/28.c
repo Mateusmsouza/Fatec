@@ -45,6 +45,8 @@ int main() {
 
 
 
+	getch();
+
 
 
 

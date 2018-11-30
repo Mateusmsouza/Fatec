@@ -1,4 +1,4 @@
-#include <stdio.h>
+// #include <stdio.h>
 #include <locale.h>
 
 /* Escreva um programa que leia a proﬁssao e o tempo de servico (em anos) de cada um dos 5 funcionarios de uma empresa e armazene-os no
@@ -35,7 +35,7 @@ int main() {
     while((aux = fgetc(arq)) != EOF ) {
 		printf("%c", aux);
      }
-
+	getch();
     return 0;
 }
 

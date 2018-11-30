@@ -24,6 +24,6 @@ int main() {
 
         fputc('\n', arq);
     }
-
+	getch();
     return 0;
 }

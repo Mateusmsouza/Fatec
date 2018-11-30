@@ -55,5 +55,6 @@ int main(){
 
     printf("Aluno mais top\n: %s", maiorNota);
     fclose(arquivo);
+	getch();
     return 0;
 }

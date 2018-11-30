@@ -168,5 +168,6 @@ int main(int argc, char const *argv[])
 		default:
 			printf("Op��o inv�lida\n");
 	}
+	getch();
 	return 0;
 }

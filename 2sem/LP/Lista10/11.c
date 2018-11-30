@@ -33,5 +33,7 @@ int main() {
      printf("\n%d", cont);
 
      fclose(arq);
-}
 
+	getch();
+	return 0;
+}

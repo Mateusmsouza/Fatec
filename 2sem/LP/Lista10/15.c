@@ -40,7 +40,7 @@ int main() {
         fprintf(arq, "Entrando na maior idade.\n");
 
 
-
+	getch();
 
     return 0;
 }

@@ -41,7 +41,7 @@ int main() {
     }
 
     printf("Maior nota: \nAluno: %s\nNota: %.2f\n", nome, nota);
-
+	getch();
     return 0;
 }
 

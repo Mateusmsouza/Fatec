@@ -48,6 +48,6 @@ int main() {
   }
   fclose(res);
 
-
+	getch();
   return 0;
 }

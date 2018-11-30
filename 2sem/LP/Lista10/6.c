@@ -44,6 +44,6 @@ int main() {
   for (int i = 0; i < 26; i++) {
     printf("%c: %d\n", letras[i], alfabeto.vezes[i]);
   }
-
+	getch();
   return 0;
 }

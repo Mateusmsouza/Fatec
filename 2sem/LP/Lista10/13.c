@@ -33,6 +33,6 @@ int main(){
     }
     printf("Execução finalizada.");
 
-
+	getch();
     return 0;
 }

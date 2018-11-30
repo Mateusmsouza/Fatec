@@ -33,5 +33,6 @@ int main() {
         }
     }
     printf("A string %c aparece %d no arquivo", to_compare, cont);
-    return 0;
+ 	getch();
+	return 0;
 }
