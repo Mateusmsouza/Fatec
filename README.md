@@ -6,4 +6,7 @@ A repository with all Fatec's proposed exercises
 	-Algoritmo;
 	-Matemática Discreta;
 ## 2º sem:
-	-Linguagem de Programação;
+	-Linguagem de Programação I;
+  -Modelagem de Dados;
+## 3º sem:
+  - Estrutura de Dados;

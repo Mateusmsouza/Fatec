@@ -1,0 +1,30 @@
+/*
+Faça uma função recursiva que calcule e retorne o fatorial de um número inteiro N.
+*/
+
+int fatorial(int x){
+  
+  if (x == 1){ // se x = 1 então a fatoração chegou ao final.
+    return x;
+  }
+  return x * fatorial(x-1); // x é multiplicado pelo seu antecessor.
+}
+
+ / * 
+ Teste de Mesa
+ _______________________
+|_________|_x_| retorno |
+| 1 inst. | 6 |         |
+| 2 inst. | 5 |         |
+| 3 inst. | 4 |         |
+| 4 inst. | 3 |         |
+| 5 inst. | 2 |         |
+| 6 inst. | 1 |    1    |
+| 5 inst. | 2 |    2    |
+| 4 inst. | 3 |    6    |
+| 3 inst. | 4 |    24   |
+| 2 inst. | 5 |   120   |
+| 1 inst. | 6 |   720   |
++-----------------------+
+
+Memória utilizada: 6 . 4 bytes (int) = 24 bytes
