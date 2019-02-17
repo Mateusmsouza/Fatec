@@ -1,0 +1,26 @@
+/*
+1 - Faça uma função recursiva que permita inverter um número inteiro N. Ex: 123 - 321
+*/
+
+ 
+ N > SE N < 10 RETURN N > RETURN recursão (N / 10) 
+
+ INT Ex01 ( INT n ) {
+
+ 	if ( n < 10 ){
+ 		return n;
+ 	}
+
+ 	return Ex02( N/10 ) * n - ( n / 10 ) * 10;
+
+ }
+ 		| n  | return
+ 1 inst | 123| 3 * Ex(12)
+
+ 		| n  | return
+ 2 inst | 12 | 2 * Ex(1)
+
+  		| n  | return
+ 3 inst | 1  | 1
+
+ ERRO, atualmente está retornando de 123 o resultado: 3 * 2 * 1.
