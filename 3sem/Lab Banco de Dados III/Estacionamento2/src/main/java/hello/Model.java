@@ -51,7 +51,7 @@ public class Model {
 		for (Carro carro: carros) {
 			if( carro.getEspc().getMarca().equals(marca) ) carrosEncontrados.add(carro);
 		}
-		return carrosEncontrados
+		return carrosEncontrados;
 	}
 
 }
