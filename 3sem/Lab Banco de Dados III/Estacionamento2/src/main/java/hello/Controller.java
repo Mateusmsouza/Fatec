@@ -46,6 +46,11 @@ public class Controller {
 		});
 	}
 	
-	
+	public void buscarCarroMarca() {
+		get("/searchbymarca/:marca", (req, res) -> {
+			List<Carro> carrosEncontrado = model.buscarMarca(req.params(":marca"));
+			return new Gson().toJson(carrosEncontrado);
+		})
+	}
 
 }

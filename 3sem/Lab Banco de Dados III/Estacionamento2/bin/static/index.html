@@ -23,19 +23,11 @@
 					
 				$("#dadosCarro").empty();
 				
-				if(marca.value) console.log("marca");
-				console.log(marca)
-				if(!modelo.value) console.log("true");
-				if(!cor.value) console.log("true");
-
-				if(marca.value && !modelo.value && !cor.value ){
-					console.log("NO IF");
-				}; 
-				
-				console.log("FORA DO IF");
-				var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
-				
-				
+				if(marca && !modelo && !cor ){
+					var url = "/serchbymarca/"+marca"";
+				}else{
+					var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
+				}
 				
 
 				$.getJSON(url, function(data) {
@@ -72,7 +64,7 @@
             <div class="form-group col-md-4">
                 <label>Modelo</label>
                 <select id="modelo" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
+                    <option value="" selected="selected"></option>
                     <option value="gol">gol</option>
                     <option value="fox">fox</option>
                     <option value="fusca">fusca</option>
@@ -85,7 +77,7 @@
             <div class="form-group col-md-4">
                 <label>Marca</label>
                 <select id="marca" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o ano</option>
+                    <option value="" selected="selected"></option>
                     <option value="vw">vw</option>
                     <option value="fiat">fiat</option>
                     <option value="ferrari">ferrari</option>
@@ -98,7 +90,7 @@
             <div class="form-group col-md-4">
                 <label>Cor</label>
                 <select id="cor" class="input-large form-control">
-                    <option value="" selected="selected">Escolha o periodo</option>
+                    <option value="" selected="selected"></option>
                     <option value="vermelho">vermelho</option>
                     <option value="verde">verde</option>
                     

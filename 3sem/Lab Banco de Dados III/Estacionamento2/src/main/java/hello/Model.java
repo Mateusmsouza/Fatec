@@ -45,5 +45,13 @@ public class Model {
 	public List<Carro> getCarros(){
 		return carros;
 	}
+	
+	public List<Carro> buscarMarca(String marca){
+		List<Carro> carrosEncontrados = new LinkedList<Carro>();
+		for (Carro carro: carros) {
+			if( carro.getEspc().getMarca().equals(marca) ) carrosEncontrados.add(carro);
+		}
+		return carrosEncontrados
+	}
 
 }
