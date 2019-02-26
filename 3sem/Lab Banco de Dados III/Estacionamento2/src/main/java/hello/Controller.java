@@ -16,8 +16,9 @@ public class Controller {
 	}
 	
 	public void buscarCarro(){
-		get("/carro/:modelo/:marca/:cor", (req, res) -> {
 		
+		get("/carro/main/:modelo/:marca/:cor", (req, res) -> {
+			System.out.print("Buscar Carro Acionado.");
 			Especificacao espec = new Especificacao(req.params(":modelo"), req.params(":marca"), req.params(":cor"));	
 			List<Carro> carrosEncontrados = model.buscarEspecificacao(espec);	
 			return new Gson().toJson(carrosEncontrados);
@@ -27,8 +28,8 @@ public class Controller {
 	
 	
 	public void buscarCarroPlaca(){
-		get("/carro/:placa", (req, res) -> {
-		
+		get("/carro/main/:placa", (req, res) -> {
+			System.out.print("Buscar Carro Placa Acionado.");
 			
 			Carro carrosEncontrado = model.buscarPlaca(req.params(":placa"));	
 			return new Gson().toJson(carrosEncontrado);
@@ -38,7 +39,7 @@ public class Controller {
 	
 	public void buscarCarroModelo(){
 		get("/carro/modelo/:modelo", (req, res) -> {
-		
+			System.out.print("Buscar Modelo Acionado.");
 			
 			List<Carro> carrosEncontrado = model.buscarModelo(req.params(":modelo"));	
 			return new Gson().toJson(carrosEncontrado);
@@ -47,7 +48,9 @@ public class Controller {
 	}
 	
 	public void buscarCarroMarca() {
+		
 		get("/carro/marcasearch/:marca", (req, res) -> {
+			System.out.print("Buscar Marca Acionado.");
 			List<Carro> carrosEncontrado = model.buscarMarca(req.params(":marca"));
 			return new Gson().toJson(carrosEncontrado);
 	});

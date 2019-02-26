@@ -29,6 +29,7 @@ public class MainServer {
 		controller.buscarCarro();
 		controller.buscarCarroPlaca();
 		controller.buscarCarroModelo();
+		controller.buscarCarroMarca();
 		
     }
     
