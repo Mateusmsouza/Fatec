@@ -22,13 +22,23 @@
 				var cor = $( "#cor option:selected" ).text();
 					
 				$("#dadosCarro").empty();
+				console.log(marca);
+				console.log(modelo);
+				console.log(cor);
 				
-				if(marca && !modelo && !cor ){
-					var url = "/serchbymarca/"+marca"";
+				
+				if(marca && !cor && !modelo ){
+					var url = "/carro/marcasearch/"+marca+"";
+					console.log(url);
 				}else{
-					var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
+					try{
+						var url = "/carro/"+modelo+"/"+marca+"/"+cor+"";
+						console.log(url);	
+					}catch(err){
+						alert("Selecione corretamente as opções, ", err);
+					}
+					
 				}
-				
 
 				$.getJSON(url, function(data) {
 						
