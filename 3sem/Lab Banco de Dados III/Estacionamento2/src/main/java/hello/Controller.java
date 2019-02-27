@@ -54,4 +54,11 @@ public class Controller {
 			List<Carro> carrosEncontrado = model.buscarMarca(req.params(":marca"));
 			return new Gson().toJson(carrosEncontrado);
 	});
-}}
+	}
+	
+	public void adCar() {
+		get("/newcar", (req, res) -> {
+			return "<h1>pau no cu</h1>";
+		});
+	}
+}
