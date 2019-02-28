@@ -6,6 +6,8 @@ typedef struct Lista{
 
 }unidade;
 
+void insere(str)
+
 int main(){
 	struct unidade *ponteiroUnidade;
 	int v[3];
@@ -15,6 +17,9 @@ int main(){
 
 	ponteiroUnidade = NULL;
 
-
+	for (int i = 0; i < ; ++i)
+	{
+		/* code */
+	}
 
 }
