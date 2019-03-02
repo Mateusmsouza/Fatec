@@ -62,3 +62,75 @@ CREATE TABLE PARTICIPA(
 	CONSTRAINT PAFKPR FOREIGN KEY (PAR_COD_PROJ) REFERENCES PROJETO(PROJ_COD_DEPART)
 );
 
+--Exercícios
+--1. Altere a tabela PROJETO, fazendo as seguintes mudanças: 
+--
+--        a. Adicionar uma coluna de nome STATUS, de preenchimento obrigatório, com dados de tipo numérico, aceitando apenas os valores 0 (flag que indica projeto inativo) e 1 (flag que indica projeto em andamento). 
+--        b. Alterar a coluna TITULO, aumentando seu tamanho para 252 caracteres.
+--        c. Renomear a coluna DATA_CAD para DATA_CADASTRO
+ALTER TABLE PROJETO
+	ADD STATUS NUMBER(1) NOT NULL CONSTRAINT STATUS_RULE CHECK(STATUS IN (1,0));
+
+ALTER TABLE PROJETO
+	MODIFY PROJ_TITULO VARCHAR2(252);
+
+ALTER TABLE PROJETO
+	RENAME COLUMN PROJ_DATA_CAD TO DATA_CADASTRO;
+
+
+--2. Altere a tabela FUNCIONARIO, fazendo as seguintes mudanças:
+
+--    a. Transformar a coluna ENDERECO numa tabela separada, 
+--		sendo que cada endereço poderá estar vinculado a mais de um funcionário 
+--		(Ex: marido, esposa e filho trabalhando na mesma empresa) e cada funcionário poderá informar mais de um endereço. 
+--		DICA: Dessa forma, teremos um relacionamento N x M entre funcionário e a nova entidade ENDERECO.
+
+--    b. Excluir a restrição associada à coluna SALARIO.
+--    c. Desativar e depois ativar a restrição associada à coluna CPF.
+--    d. Ativar e depois ativar a restrição associada à coluna cod_func. 
+CREATE TABLE FUN_ENDERECO(
+	ID NUMBER(1),
+	CONSTRAINT PK PRIMARY KEY (ID)
+);
+
+ALTER TABLE FUNCIONARIO
+	DROP COLUMN FUN_ENDERECO;
+ALTER TABLE FUNCIONARIO	
+	ADD COLUMN FUN_ENDERECO_ID VARCHAR2(252) CONSTRAINT FKEND FOREIGN KEY (FUN_ENDERECO_ID) REFERENCES FUN_ENDERECO(ID);
+
+ALTER TABLE FUNCIONARIO
+	DROP CONSTRAINT FUNSAL;
+ALTER TABLE FUNCIONARIO
+	DISABLE CONSTRAINT UNQCPF;
+ALTER TABLE FUNCIONARIO
+	ENABLE CONSTRAINT UNQCPF;
+ALTER TABLE FUNCIONARIO
+	DISABLE CONSTRAINT FUNCPK;
+ALTER TABLE FUNCIONARIO
+	ENABLE CONSTRAINT FUNCPK;
+
+
+--3. Altere a tabela DEPENDENTE, fazendo as seguintes mudanças:
+
+--    a. A coluna PARENTESCO deixa de ser texto e passa a ser contralada através de outra tabela, 
+--    onde são armazenados o CODIGO e DESCRICAO do tipo de parentescos aceitos pela empresa. 
+--    Dessa forma, uma chave estrangeira na tabela DEPENDENTE deverá referenciar a chave primária dessa nova tabela, 
+--    num relacionamento 1 x N (Parentesco à Dependente).
+--    b. Criar uma chave alternativa na tabela DEPENDENTE, onde será armazenado o CPF dos dependentes.
+--    c. Automatizar o processo de exclusão de registros da tabela DEPENDENTE ao excluir um registro da tabela FUNCIONARIO. 
+--		Para isso, utilizar o comando DELETE CASCADE na chave estrangeira da coluna DEPENDENTE.COD_FUNC. 
+--			(Lembre-se: não é possível modificar uma constraint!) vide aula DDL – PARTE 2.
+CREATE TABLE PARENTESCO(
+	CODIGO NUMBER(5),
+	DESCRICAO VARCHAR2(200)
+);
+
+ALTER TABLE DEPENDENTE
+	DROP COLUMN DEP_PARENTESCO;
+ALTER TABLE DEPENDENTE	
+	ADD COLUMN DEP_ID_PARENTESCO CONSTRAINT DEPPKPARENTESCO (DEP_ID_PARENTESCO) REFERENCES PARENTESCO(CODIGO); 
+
+
+-- 4. Renomear a tabela PARTICIPA para FUNC_PROJETO
+ALTER TABLE PARTICIPA RENAME 
+	TO DA FUNC_PROJETO;
