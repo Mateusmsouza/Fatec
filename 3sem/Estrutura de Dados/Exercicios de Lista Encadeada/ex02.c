@@ -8,6 +8,13 @@ typedef struct registro {
 	struct registro *next;
 } celula;
 
+void busca(celula *le, int x){
+	if (le->objeto == x){
+		printf("Objeto: %d existe na lista\n", le->objeto);
+	}
+	if (le->next!=NULL) busca(le->next, x);
+}
+
 void imprimir(celula *le){
 	if(le->next != NULL){
 		printf("Objeto: %d\n", le->objeto);
@@ -40,7 +47,9 @@ int main(void){
 	insere(10000, le);
 	insere(1000, le);
 	insere(100, le);
+	insere(100, le);
 	
-	imprimir(le);	
+	//imprimir(le);	
+	busca(le, 100);
 	return EXIT_SUCCESS;
 }
