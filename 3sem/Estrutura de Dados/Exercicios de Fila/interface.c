@@ -19,9 +19,13 @@ int iniciafila(){
 }
 
 void inserenafila(int x){
-	FILA[n++] = x;
+	FILA[t++] = x;
 }
 
 void tiradafila(){
-	FILA[t++]
+	FILA[n++]
+}
+
+int comprimentofila(){
+	return t - n;
 }
