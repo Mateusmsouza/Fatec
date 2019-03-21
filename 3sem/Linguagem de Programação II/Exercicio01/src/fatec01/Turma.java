@@ -16,27 +16,33 @@ public class Turma {
 		}
 		this.numMax = inicializarVetor;
 	}
+	
 	// methods
 	public void Add(Aluno aluno) {
 		
-		if (gamb == (numMax-1)) {
+		if (gamb != (numMax-1)) {
 			this.alunos[gamb] = aluno; 	
 			this.setGamb(gamb+1);
+			System.out.println("Aluno inserido com sucesso.");
 		} else {
 			System.out.print("Turma já está cheia!\n");
 		}
 	}
 	
 	public Aluno consultaPorNomeAluno(Aluno aluno) {
-		for(Aluno toCompare: alunos) {
-			if (toCompare != null) if (toCompare.getNome().equals(aluno.getNome())) return toCompare;
+		if (alunos.length > 0) {
+			for(Aluno toCompare: alunos) {
+				if (toCompare != null) if (toCompare.getNome().equals(aluno.getNome())) return toCompare;
+			}	
 		}
 		return null;
 	}
 	
 	public Aluno consultaPorMatriculaAluno(Aluno aluno) {
-		for(Aluno toCompare: alunos) {
-			if (toCompare.getMatricula() == aluno.getMatricula()) return toCompare;
+		if (alunos.length > 0) {
+			for(Aluno toCompare: alunos) {
+				if (toCompare != null) if (toCompare.getMatricula() == aluno.getMatricula()) return toCompare;
+			}	
 		}
 		return null;
 	}

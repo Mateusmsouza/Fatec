@@ -2,17 +2,16 @@ package fatec01;
 import java.util.Scanner;
 
 public class main {
-
 	public static void main(final String[] args) { 
 		Scanner Input = new Scanner(System.in);
 		boolean continua = true;
 		int menu = 99;
 		
 		System.out.println("Qual o tamanho da turma?");
-		Turma turma = inicializaTurma(Input.nextInt());
+		Turma turma = inicializaTurma( Input.nextInt() );
+		
 		
 		while(continua && (turma!=null) ) {
-			
 			System.out.println("Hub:");
 			System.out.print("1 - Inserir aluno\n");
 			System.out.print("2 - Alterar dados de um aluno\n");
@@ -23,7 +22,7 @@ public class main {
 			//System.out.println("6 - validar se aluno já foi informado");
 			menu = Input.nextInt();
 			
-			if (menu== 1) adicionaAluno(turma);
+			if (menu== 1) adicionaAluno(turma, Input);
 			else if(menu == 2) alteraAluno(turma);
 			else if(menu == 3) consultaNome(turma);
 			else if(menu == 4) consultaMatricula(turma);
@@ -31,7 +30,9 @@ public class main {
 			else if(menu == 5) imprimirAlunos(turma);
 			
 		}
+		
 		Input.close();
+		
 	}
 	
 	private static Turma inicializaTurma(int tamanho) {
@@ -41,37 +42,37 @@ public class main {
 		return turma;
 	}
 	
-	private static void adicionaAluno(Turma turma){
+	private static void adicionaAluno(Turma turma, Scanner Input){
 		// Iniciando aluno novo
 		Aluno newAluno = new Aluno();
 		
-		Scanner adcInput = new Scanner(System.in); // out terminal
+		//Scanner adcInput = new Scanner(System.in); // out terminal
 		
 		// Criando o novo aluno
 		System.out.println("Insira o nome do Aluno.");
-		newAluno.setNome(adcInput.nextLine());
+		Input.nextLine();
+		newAluno.setNome(Input.nextLine());
 		System.out.println("Insira o curso do Aluno.");
-		newAluno.setCurso(adcInput.nextLine());
+		newAluno.setCurso(Input.nextLine());
 		System.out.println("Insira a matricula do Aluno [INT TYPE].");
-		newAluno.setMatricula(adcInput.nextInt());
+		newAluno.setMatricula(Input.nextInt());
 		
 		System.out.println("Insira a nota.");
-		newAluno.setP1(new Prova(adcInput.nextInt(), 1));
-		newAluno.setP2(new Prova(adcInput.nextInt(), 2));
-		newAluno.setP3(new Prova(adcInput.nextInt(), 3));
-		newAluno.setP4(new Prova(adcInput.nextInt(), 4));
+		newAluno.setP1(new Prova(Input.nextInt(), 1));
+		newAluno.setP2(new Prova(Input.nextInt(), 2));
+		newAluno.setP3(new Prova(Input.nextInt(), 3));
+		newAluno.setP4(new Prova(Input.nextInt(), 4));
 		
 		// validando que aluno não existe em turma
-		if ((turma.consultaPorNomeAluno(newAluno) != null) && (turma.consultaPorMatriculaAluno(newAluno) != null)) {
+		if ((turma.consultaPorNomeAluno(newAluno) != null) || (turma.consultaPorMatriculaAluno(newAluno) != null)) {
 			System.out.println("Aluno já cadastrado. Operação abortada.");
-			adcInput.close();
+			//Input.close();
 			return ;
 		}
 		
 		// adicionando aluno
 		turma.Add(newAluno);
-		System.out.println("Aluno inserido com sucesso.");
-		adcInput.close();	
+		//adcInput.close();	
 	}
 	
 	private static void alteraAluno(Turma turma) {
