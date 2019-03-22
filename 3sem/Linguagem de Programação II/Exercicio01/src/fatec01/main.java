@@ -22,10 +22,10 @@ public class main {
 			//System.out.println("6 - validar se aluno já foi informado");
 			menu = Input.nextInt();
 			
-			if (menu== 1) adicionaAluno(turma, Input);
-			else if(menu == 2) alteraAluno(turma);
-			else if(menu == 3) consultaNome(turma);
-			else if(menu == 4) consultaMatricula(turma);
+			if (menu== 1) adicionaAluno(turma, Input); // funcional
+			else if(menu == 2) alteraAluno(turma, Input);
+			else if(menu == 3) consultaNome(turma, Input);
+			else if(menu == 4) consultaMatricula(turma, Input); // funcional
 			else if(menu == 5) excluirAluno(turma);
 			else if(menu == 5) imprimirAlunos(turma);
 			
@@ -75,8 +75,7 @@ public class main {
 		//adcInput.close();	
 	}
 	
-	private static void alteraAluno(Turma turma) {
-		Scanner adcAltera = new Scanner(System.in);
+	private static void alteraAluno(Turma turma, Scanner adcAltera) {
 		
 		//criando um objeto template para armazenar matrícula
 		System.out.println("Insira matricula do aluno [INT TYPE]");
@@ -85,22 +84,17 @@ public class main {
 		
 		if (turma.consultaPorMatriculaAluno(templateAluno) != null) {
 			System.out.println("Aluno inexistente na base. Operação abortada");
-			adcAltera.close();
 			return ;
 		}
-		
-		
-		adcAltera.close();
+	
 	}
 	
-	private static void consultaNome(Turma turma) {
-		Scanner adcAltera = new Scanner(System.in);
+	private static void consultaNome(Turma turma, Scanner adcAltera) {
 		
 		//criando um objeto template para armazenar matrícula
 		System.out.println("Insira nome do aluno [INT TYPE]");
 		Aluno templateAluno = new Aluno();
 		templateAluno.setNome(adcAltera.nextLine());		
-		adcAltera.close();
 		if (turma.consultaPorNomeAluno(templateAluno) != null ) {
 			System.out.print("Aluno existe: ");
 			System.out.print(turma.consultaPorNomeAluno(templateAluno));
@@ -109,15 +103,14 @@ public class main {
 		System.out.print("Aluno não existe");
 	}
 	
-	private static void consultaMatricula(Turma turma) {
-		Scanner adcAltera = new Scanner(System.in);
+	private static void consultaMatricula(Turma turma, Scanner adcAltera) {
 		
 		//criando um objeto template para armazenar matrícula
 		System.out.println("Insira matricula do aluno [INT TYPE]");
 		Aluno templateAluno = new Aluno();
 		templateAluno.setMatricula(adcAltera.nextInt());		
-		adcAltera.close();
-		if (turma.consultaPorNomeAluno(templateAluno) != null ) {
+
+		if (turma.consultaPorMatriculaAluno(templateAluno) != null ) {
 			System.out.print("Aluno existe: ");
 			System.out.print(turma.consultaPorNomeAluno(templateAluno));
 			return ;
