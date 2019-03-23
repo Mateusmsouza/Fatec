@@ -56,7 +56,7 @@ public class Turma {
 	
 	public void imprimir() {
 		for(Aluno toCompare: alunos) {
-			if (toCompare.getNome() != null) System.out.print(toCompare);
+			if (toCompare.getNome() != null) System.out.print(toCompare.getNome());
 		}
 		System.out.print("Fim da impressão.");
 	}

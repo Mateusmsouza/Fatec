@@ -22,12 +22,12 @@ public class main {
 			//System.out.println("6 - validar se aluno já foi informado");
 			menu = Input.nextInt();
 			
-			if (menu== 1) adicionaAluno(turma, Input); // funcional
+			if (menu== 1) adicionaAluno(turma, Input); // funcional c/ bug quando tamanho turma = 1
 			else if(menu == 2) alteraAluno(turma, Input);
-			else if(menu == 3) consultaNome(turma, Input);
+			else if(menu == 3) consultaNome(turma, Input); // funcional
 			else if(menu == 4) consultaMatricula(turma, Input); // funcional
 			else if(menu == 5) excluirAluno(turma);
-			else if(menu == 5) imprimirAlunos(turma);
+			else if(menu == 6) imprimirAlunos(turma); // funcional
 			
 		}
 		
@@ -94,6 +94,7 @@ public class main {
 		//criando um objeto template para armazenar matrícula
 		System.out.println("Insira nome do aluno [INT TYPE]");
 		Aluno templateAluno = new Aluno();
+		adcAltera.nextLine();
 		templateAluno.setNome(adcAltera.nextLine());		
 		if (turma.consultaPorNomeAluno(templateAluno) != null ) {
 			System.out.print("Aluno existe: ");
