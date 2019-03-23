@@ -20,7 +20,7 @@ public class Turma {
 	// methods
 	public void Add(Aluno aluno) {
 		
-		if (gamb != (numMax-1)) {
+		if (gamb != (numMax)) {
 			this.alunos[gamb] = aluno; 	
 			this.setGamb(gamb+1);
 			System.out.println("Aluno inserido com sucesso.");

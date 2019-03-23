@@ -22,11 +22,11 @@ public class main {
 			//System.out.println("6 - validar se aluno já foi informado");
 			menu = Input.nextInt();
 			
-			if (menu== 1) adicionaAluno(turma, Input); // funcional c/ bug quando tamanho turma = 1
+			if (menu== 1) adicionaAluno(turma, Input); // funcional
 			else if(menu == 2) alteraAluno(turma, Input);
 			else if(menu == 3) consultaNome(turma, Input); // funcional
 			else if(menu == 4) consultaMatricula(turma, Input); // funcional
-			else if(menu == 5) excluirAluno(turma);
+			else if(menu == 5) excluirAluno(turma, Input);
 			else if(menu == 6) imprimirAlunos(turma); // funcional
 			
 		}
@@ -64,7 +64,8 @@ public class main {
 		newAluno.setP4(new Prova(Input.nextInt(), 4));
 		
 		// validando que aluno não existe em turma
-		if ((turma.consultaPorNomeAluno(newAluno) != null) || (turma.consultaPorMatriculaAluno(newAluno) != null)) {
+		// turma.consultaPorNomeAluno(newAluno) != null) || 
+		if (turma.consultaPorMatriculaAluno(newAluno) != null) {
 			System.out.println("Aluno já cadastrado. Operação abortada.");
 			//Input.close();
 			return ;
@@ -119,19 +120,17 @@ public class main {
 		System.out.print("Aluno não existe");
 	}
 	
-	private static void excluirAluno(Turma turma) {
-		Scanner adcAltera = new Scanner(System.in);
+	private static void excluirAluno(Turma turma, Scanner adcAltera) {
 		
 		//criando um objeto template para armazenar matrícula
 		System.out.println("Insira matricula do aluno [INT TYPE]");
 		Aluno templateAluno = new Aluno();
 		templateAluno.setMatricula(adcAltera.nextInt());		
-		adcAltera.close();
-		
+		adcAltera.nextLine();
 		// excluindo aluno
 		if (turma.consultaPorMatriculaAluno(templateAluno) != null ) {
 			System.out.print("Aluno existe: ");
-			turma.excluirAluno( turma.consultaPorMatriculaAluno(templateAluno) );
+			turma.excluirAluno( turma.consultaPorMatriculaAluno(templateAluno));
 			return ;
 		}
 	}
