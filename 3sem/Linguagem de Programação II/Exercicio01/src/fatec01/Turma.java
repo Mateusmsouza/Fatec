@@ -48,12 +48,27 @@ public class Turma {
 	}
 	
 	public void excluirAluno(Aluno aluno) {
-		for(Aluno toCompare: alunos) {
-			if (toCompare.getMatricula() == aluno.getMatricula()) toCompare = null;
+		for ( int i = 0; i < alunos.length; i++ ) {
+			if (alunos[i] != null) {
+				
+				if ( alunos[i].getNome().equals(aluno.getNome())) {
+					alunos[i] = null;
+				}
+			}
 		}
+		
 		System.out.print("Aluno Excluido.");
+		realocaArray();
 	}
 	
+	private void realocaArray() {
+		for(int i = 0; i < alunos.length-1; i++) {
+			if(alunos[i] == null) {
+				alunos[i] = alunos[i+1];
+				if ( ( 1+i != alunos.length ) ) alunos[i+1]=null;
+			}
+		}
+	}
 	public void imprimir() {
 		for(Aluno toCompare: alunos) {
 			if (toCompare.getNome() != null) System.out.print(toCompare.getNome());

@@ -11,4 +11,5 @@ public class Prova {
 		this.notaProva = nota;
 		this.peso = peso;
 	}
+	
 }

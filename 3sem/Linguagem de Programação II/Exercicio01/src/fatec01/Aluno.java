@@ -1,4 +1,6 @@
 package fatec01;
+import java.util.Scanner;
+
 import lombok.*;
 
 
@@ -9,5 +11,5 @@ public class Aluno {
 	private int matricula;
 	private String curso;
 	private Prova provas[] = new Prova[4];
-	
+
 }
