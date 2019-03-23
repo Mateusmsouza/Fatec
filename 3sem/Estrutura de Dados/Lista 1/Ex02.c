@@ -10,6 +10,10 @@ void ex02 ( int n ){
   print ( "%d\n" ,  n );
 }
 
+int main(){
+  return 0;
+}
+/*
 
 Teste de Mesa para N = 5.
 
@@ -25,3 +29,4 @@ Teste de Mesa para N = 5.
 1 inst | 5 | 5
 
 Memória : 5 INST * (1 INT * 4) = 5 INST * 4 INT = 20 Bytes
+*/
