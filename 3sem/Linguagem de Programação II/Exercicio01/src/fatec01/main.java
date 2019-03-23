@@ -58,10 +58,14 @@ public class main {
 		newAluno.setMatricula(Input.nextInt());
 		
 		System.out.println("Insira a nota.");
-		newAluno.setP1(new Prova(Input.nextInt(), 1));
-		newAluno.setP2(new Prova(Input.nextInt(), 2));
-		newAluno.setP3(new Prova(Input.nextInt(), 3));
-		newAluno.setP4(new Prova(Input.nextInt(), 4));
+		Prova provas[] = new Prova[4];
+		provas[0] = new Prova(Input.nextInt(), 1);
+		provas[1] = new Prova(Input.nextInt(), 2);
+		provas[2] = new Prova(Input.nextInt(), 3);
+		provas[3] = new Prova(Input.nextInt(), 4);
+		Input.nextLine();
+		newAluno.setProvas(provas);
+		
 		
 		// validando que aluno não existe em turma
 		// turma.consultaPorNomeAluno(newAluno) != null) || 
