@@ -1,5 +1,5 @@
 /*
-06 - Faça uma função que converta um vetor em lista encadeada (mantenha a ordem)
+06 - Faï¿½a uma funï¿½ï¿½o que converta um vetor em lista encadeada (mantenha a ordem)
 */
 #include <stdlib.h>
 
@@ -26,15 +26,4 @@ int *convert(int array[], int n){
         init = newElement;
     }
     return dummycell;
-}
-
-int main(){
-
-    int v[3];
-    v[0] = 1;
-    v[1] = 2;
-    v[2] = 3;
-
-    printf("Endereco de memória devolvido: %d\n", (convert(v, 3)));
-    return 0;
 }
