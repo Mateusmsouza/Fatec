@@ -20,29 +20,30 @@ int *swap(int v[], int n, int p){
   int auxSwap;
 
   for(int i = 0; i < n; i++){
-    
+
     if(v[i] <  p){
-      printf("no if 1\n");
+
       auxSwap = v[auxInicio];
+      printf("No if 1\nTrocando v[auxInicio]: %d por v[i]: %d\n\n", v[auxInicio], v[i]);
       v[auxInicio] = v[i];
       v[i] = auxSwap;
       auxInicio += 1;
     }
+
     if (v[i] > p){
-      printf("no if 2\n");
       auxSwap = v[auxFinal];
+      printf("No if 2\nTrocando v[auxFinal]: %d por v[i]: %d\n\n", v[auxFinal], v[i]);
       v[auxFinal] = v[i];
       v[i] = auxSwap;
       auxFinal-=1;
     }
+    if (v[i] == p) auxInicio +=1;
   }
-  
+
   for(int j = 0; j < n; j++)
   {
     printf("%d\n", v[j]);
   }
-  
-
   return v;
 }
 
