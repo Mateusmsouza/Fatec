@@ -19,7 +19,7 @@ int *swap(int v[], int n, int p){
   int auxFinal = n-1;
   int auxSwap;
 
-  for(int i = 0; i < n; i++){
+  for(int i = 0; i < 3; i++){
 
     if(v[i] <  p){
 
