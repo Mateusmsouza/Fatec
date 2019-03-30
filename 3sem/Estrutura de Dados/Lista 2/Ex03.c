@@ -19,36 +19,40 @@ int *swap(int v[], int n, int p){
   int auxFinal = n-1;
   int auxSwap;
 
-  for(int i = 0; i < 3; i++){
-
-    if(v[i] <  p){
-
-      auxSwap = v[auxInicio];
-      printf("No if 1\nTrocando v[auxInicio]: %d por v[i]: %d\n\n", v[auxInicio], v[i]);
-      v[auxInicio] = v[i];
-      v[i] = auxSwap;
-      auxInicio += 1;
+  for(int i = 0; i < n - 1; i++){
+    if ( v[i] < p ){
+         auxSwap = v[auxInicio];
+         v[auxInicio] = v[i];
+         v[i] = auxSwap;
+         auxInicio++;
     }
-
     if (v[i] > p){
-      auxSwap = v[auxFinal];
-      printf("No if 2\nTrocando v[auxFinal]: %d por v[i]: %d\n\n", v[auxFinal], v[i]);
-      v[auxFinal] = v[i];
-      v[i] = auxSwap;
-      auxFinal-=1;
+        auxSwap = v[auxFinal];
+        v[auxFinal] = v[i];
+        v[i] = auxSwap;
+        auxFinal--;
     }
-    if (v[i] == p) auxInicio +=1;
+    if ((v[i] == p) && (v[i+1] > v[i] ) ){
+        auxSwap = v[i];
+        v[i] = v[i=1];
+        v[i+1] = auxSwap;
+        auxInicio++;
+    }else if(v[i] == p){
+        auxInicio++;
+    }
+
   }
 
   for(int j = 0; j < n; j++)
   {
-    printf("%d\n", v[j]);
+    printf("%d, ", v[j]);
   }
+  printf("\n");
   return v;
 }
 
 int main(){
-  int v[] = { 1 , 3 , 5 , 2 , 7 };
-  swap(v, 5, 2);
+  int v[] = { 1 , 5 , 2 , 6 , 7 };
+  swap(v, 5, 5);
   return 0;
 }
