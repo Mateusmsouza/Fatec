@@ -1,0 +1,15 @@
+Ex01
+
+Um carro é um veículo de locomoção.
+Substantivos:
+Portas
+Janelas
+Pneus
+Motor
+
+Portas : Abrir, Fechar 
+Janelas: Abrir, Fechar
+Motor: Ligar, desligar
+Pneus: Rodar
+
+Os pneus precisam do motor ligado para rodar e por segurança a Porta deve estar fechada.
