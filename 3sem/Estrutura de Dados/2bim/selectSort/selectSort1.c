@@ -7,7 +7,7 @@
 * Autor: Mateus M. Souza, 2019
 */
 #include <stdio.h>
-
+ 
 int *selectSort(int v[], int n){
   int menor;
   int swap;
