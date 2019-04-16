@@ -1,18 +1,19 @@
 /*
 *----------------------------------------------------
-* Implementando um select sort                      *   
+* Implementando um select sort                      *
 * Este select Sort selecionará o maior elemento     *
 * em cada varredura e o posicionará no fim do vetor *
 *----------------------------------------------------
 * Autor: Mateus M. Souza, 2019
 */
 #include <stdio.h>
- 
+#include <locale.h>
+
 int *selectSort(int v[], int n){
   int swap;
   int aux;
 
-  // Iniciando o loop do final do vetor 
+  // Iniciando o loop do final do vetor
   // e decrementando I que será a condição de parada do FOR mais interno
   for(int i = n-1; i > -1; i--)
   {
@@ -46,7 +47,22 @@ int *selectSort(int v[], int n){
   return v;
 }
 
+void assign(){
+    printf("+--------------------------------+\n");
+    printf("| Algoritmo: Select Sort 2       |\n");
+    printf("| Autor: Mateus Machado de Souza |\n");
+    printf("|                                |\n");
+    printf("| Faculdade de Tecnologia  de    |\n");
+    printf("| São José dos Campos            |\n");
+    printf("| Ano: 2019                      |\n");
+    printf("+--------------------------------+\n");
+}
+
 int main(){
+
+  setlocale(LC_ALL, "Portuguese");
+  assign();
+
   int v[] = {5,2,3,4,1};
   selectSort(v,5);
 }

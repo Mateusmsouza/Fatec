@@ -1,13 +1,14 @@
 /*
 *--------------------------------------------------------
 * Implementando um select sort                          *
-* Este select Sort selecionará o menor elemento em cada * 
+* Este select Sort selecionará o menor elemento em cada *
 * varredura e o posicionará no inicio do vetor          *
 *-------------------------------------------------------*
 * Autor: Mateus M. Souza, 2019
 */
 #include <stdio.h>
- 
+#include <locale.h>
+
 int *selectSort(int v[], int n){
   int menor;
   int swap;
@@ -31,17 +32,27 @@ int *selectSort(int v[], int n){
     v[menor] = v[i];
     v[i] = swap;
   }
-  
+
   // printando o vetor para testes.
   for(int a = 0; a < n; a++)
   {
     printf("%d ", v[a]);
   }
   printf("\n");
-  
+
   return v;
 }
 
+void assign(){
+    printf("+--------------------------------+\n");
+    printf("| Algoritmo: Select Sort 1       |\n");
+    printf("| Autor: Mateus Machado de Souza |\n");
+    printf("|                                |\n");
+    printf("| Faculdade de Tecnologia  de    |\n");
+    printf("| São José dos Campos            |\n");
+    printf("| Ano: 2019                      |\n");
+    printf("+--------------------------------+\n");
+}
 
 int main(){
   int v[] = {5,2,3,4,1};
