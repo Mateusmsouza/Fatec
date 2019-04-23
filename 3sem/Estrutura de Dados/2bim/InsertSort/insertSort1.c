@@ -23,29 +23,19 @@ void assign(){
 
 void insertSort (int v[], int n){
     // Criando variável de troca
-  int swap;
+  int swap, i, j;
 
   // iniciando a iteração a partir do primeiro elemento, o algoritmo exige que haja pelo menos um elemento anterior para
   // realizar a comparação, por este motivo a iteração do for mais externo deve iniciar em 1.
-  for(int i = 1; i < n; i++)
-  {
-
-    // o j será iniciando sempre no elemento de índice anterior (i-1) em relação ao índice do for mais externo (i)
-    // a condição de parada é:
-    // 1 - o elemento do índice j não é maior do que seu sucessor j+1
-    // 2- o j é um número positivo ou neutro ( j >= 0) para evitar que as comparações saiam da medida do vetor
-    for(int j = i-1 ; v[j] > v[j+1] && j>=0; j--)
-    {
-        // caso o elemento de j seja maior que o elemento de j+1
-        // a troca é realizada, já que isto significa que o elemento em J não está ordenado.
-        // j é decrementado para que este elemento continue sendo comparado até que se encontre
-        // o ponto exato onde ele estará ordenado no vetor.
-        swap = v[j+1];
-        v[j+1] = v[j];
-        v[j] = swap;
-    }
-
-  }
+  for (int j = 1; j < n; ++j) {
+      int x = v[j];
+      int i;
+      for (i = j-1; i >= 0 && v[i] > x; --i)
+        printf("I: %d ", i);
+         v[i+1] = v[i];
+    printf("\n");;
+      v[i+1] = x;
+   }
 
 
 }
