@@ -1,3 +1,8 @@
+-- Fatec SJC
+-- Mateus Machado de Souza
+-- Fábio Lucas Romeiro
+
+-- 1
 CREATE TABLE ESTADO(
   est_cod NUMBER(4),
   est_cidade NUMBER(4),
@@ -67,3 +72,48 @@ VALUES(1, 'PROGRAMADOR');
 
 INSERT INTO FUNCIONARIO
 VALUES(1,'top', 'MATEUS', 2000,1,1232,666,1,1,1);
+
+-- 2
+-- Crie a View Funcionário_View com os campos :fun_cod, fun_nome ,fun_logradoro, cid_nome,
+-- est_estado, carg_descricao, dep_descricao. Apenas será possível a leitura dos dados cadastrais
+-- pela view ​ Funcionario_View​ .
+
+create view Funcionario_View as SELECT f.fun_cod, f.fun_nome, f.fun_logradouro, c.cid_nome, e.est_cidade FROM FUNCIONARIO f INNER JOIN CIDADE  c on f.cid_cod = c.cid_cod 
+INNER JOIN ESTADO e on c.est_cod = e.est_cod with read only
+
+-- 3 
+-- Consulte os dados cadastrais pela View ​ (Funcionario_View) .
+SELECT * from Funcionario_View;
+
+-- 4 
+-- Consulte os dados dos funcionários pela tabela Funcionário.
+SELECT f.fun_cod, f.fun_nome, f.fun_logradouro, c.cid_nome, e.est_cidade 
+FROM FUNCIONARIO f 
+INNER JOIN CIDADE  c on f.cid_cod = c.cid_cod 
+INNER JOIN ESTADO e on c.est_cod = e.est_cod;
+
+--5. 
+
+INSERT INTO Funcionario VALUES(5,'Rua Jose Cobra, 233 - SJC', 'Paulo Luiz', 5000.00,2,12237821,24,5,2);
+SELECT * FROM Funcionario_View;
+
+--6.
+
+ALTER TABLE Funcionario ADD fun_obs VARCHAR2(255);
+CREATE OR REPLACE VIEW Funcionario_View 
+AS SELECT f.fun_cod, f.fun_nome ,f.fun_logradoro,  c.cid_nome, e.est_estado, c.carg_descricao, d.dep_descricao
+FROM Funcionario f 
+NATURAL JOIN Cidade c 
+NATURAL JOIN Estado e 
+INNER JOIN Departamento d ON
+d.dep_cod = f.dep_cod;
+
+--7.
+
+SELECT view_name,text
+FROM user_views
+WHERE view_name='funcionario_view';
+
+--8.
+
+-- Resposta: C
