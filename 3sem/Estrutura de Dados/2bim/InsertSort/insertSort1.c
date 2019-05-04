@@ -20,36 +20,35 @@ void assign(){
     printf("| Ano: 2019                      |\n");
     printf("+--------------------------------+\n\n");
 }
+#include <stdio.h>
 
-void insertSort (int v[], int n){
-    // Criando variável de troca
-  int swap;
+void
+insertSort(int v[], int n){
+  int selecionado, i, j;
+  // selecionando um elemento por vez, que será ordenado.
+  // Começar selecionando a partir do elemento de índice 1
+  // otimizará uma comparação disperçada dentro do for mais interno
+  for(int i = 1; i < n ; i++){
+    selecionado = v[i];
 
-  // iniciando a iteração a partir do primeiro elemento, o algoritmo exige que haja pelo menos um elemento anterior para
-  // realizar a comparação, por este motivo a iteração do for mais externo deve iniciar em 1.
-  for(int i = 1; i < n; i++)
-  {
+    // enquanto o elemento v[j] for maior do que o elemento selecionado
+    // e j > 0 (para evitar que o j fique negativo)
+    // o elemento será arrastado para frente no vetor, isto é 
+    // o elemento de índice j+1
+    for(j = i-1; j >= 0 && v[j] > selecionado; j--) v[j+1] = v[j];
 
-    // o j será iniciando sempre no elemento de índice anterior (i-1) em relação ao índice do for mais externo (i)
-    // a condição de parada é:
-    // 1 - o elemento do índice j não é maior do que seu sucessor j+1
-    // 2- o j é um número positivo ou neutro ( j >= 0) para evitar que as comparações saiam da medida do vetor
-    for(int j = i-1 ; v[j] > v[j+1] && j>=0; j--)
-    {
-        // caso o elemento de j seja maior que o elemento de j+1
-        // a troca é realizada, já que isto significa que o elemento em J não está ordenado.
-        // j é decrementado para que este elemento continue sendo comparado até que se encontre
-        // o ponto exato onde ele estará ordenado no vetor.
-        swap = v[j+1];
-        v[j+1] = v[j];
-        v[j] = swap;
-    }
-
+    // quando o for mais interno terminar, j+1 deverá guardar o 
+    // índice selecionado para guardar o elemento selecionado.
+    // Ou seja, o for acima mais interno é usado para dois motivos:
+    // a. empurrar todos os elementos maiores que o selecionado para frente
+    // b. encontrar o índice anterior ao índice que o elemento selecionado deverá ficar.
+    v[j+1] = selecionado;
   }
 
-
 }
-void printVetor(int v[], int n){
+
+void 
+printVetor(int v[], int n){
     printf("\n");
     printf("[");
     for(int a = 0; a < n; a++){
@@ -59,18 +58,12 @@ void printVetor(int v[], int n){
     printf("]\n");
 }
 
-int main(){
-  setlocale(LC_ALL, "Portuguese");
-  assign();
-  int tamanho = 5;
-  int v[] = {5,2,3,4,1};
 
-  printf("Vetor original:\n");
-  printVetor(v, tamanho);
+int main(void) {
+  int v[] = {5,2,1,3,6};
+  
+  insertSort(v, sizeof(v)/sizeof(int));
 
-  insertSort(v, tamanho);
-
-  printf("Vetor ordenado por insert sort:\n");
-  printVetor(v, tamanho);
+  printVetor(v, sizeof(v)/sizeof(int));
   return 0;
 }
