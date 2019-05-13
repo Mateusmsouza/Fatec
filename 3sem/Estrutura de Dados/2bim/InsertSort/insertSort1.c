@@ -20,7 +20,9 @@ void assign(){
     printf("| Ano: 2019                      |\n");
     printf("+--------------------------------+\n\n");
 }
+#include <stdio.h>
 
+<<<<<<< HEAD
 void insertSort (int v[], int n){
     // Criando variável de troca
   int swap, i, j;
@@ -36,10 +38,35 @@ void insertSort (int v[], int n){
     printf("\n");;
       v[i+1] = x;
    }
+=======
+void
+insertSort(int v[], int n){
+  int selecionado, i, j;
+  // selecionando um elemento por vez, que será ordenado.
+  // Começar selecionando a partir do elemento de índice 1
+  // otimizará uma comparação disperçada dentro do for mais interno
+  for(int i = 1; i < n ; i++){
+    selecionado = v[i];
 
+    // enquanto o elemento v[j] for maior do que o elemento selecionado
+    // e j > 0 (para evitar que o j fique negativo)
+    // o elemento será arrastado para frente no vetor, isto é 
+    // o elemento de índice j+1
+    for(j = i-1; j >= 0 && v[j] > selecionado; j--) v[j+1] = v[j];
+
+    // quando o for mais interno terminar, j+1 deverá guardar o 
+    // índice selecionado para guardar o elemento selecionado.
+    // Ou seja, o for acima mais interno é usado para dois motivos:
+    // a. empurrar todos os elementos maiores que o selecionado para frente
+    // b. encontrar o índice anterior ao índice que o elemento selecionado deverá ficar.
+    v[j+1] = selecionado;
+  }
+>>>>>>> b2a98b1537a12ba01fdc7566330770545aa77d37
 
 }
-void printVetor(int v[], int n){
+
+void 
+printVetor(int v[], int n){
     printf("\n");
     printf("[");
     for(int a = 0; a < n; a++){
@@ -49,18 +76,12 @@ void printVetor(int v[], int n){
     printf("]\n");
 }
 
-int main(){
-  setlocale(LC_ALL, "Portuguese");
-  assign();
-  int tamanho = 5;
-  int v[] = {5,2,3,4,1};
 
-  printf("Vetor original:\n");
-  printVetor(v, tamanho);
+int main(void) {
+  int v[] = {5,2,1,3,6};
+  
+  insertSort(v, sizeof(v)/sizeof(int));
 
-  insertSort(v, tamanho);
-
-  printf("Vetor ordenado por insert sort:\n");
-  printVetor(v, tamanho);
+  printVetor(v, sizeof(v)/sizeof(int));
   return 0;
 }
