@@ -1,42 +1,65 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
 
 // implementação de round para arredondar para cima caso impar
 int roundGap(int x){
+  if (x == 1) return 0;
   return (x%2) == 0? x/2 : (x+1)/2;
 }
 
-// 3 8 5 2 7
+int *
+devolveVetorgaps(int x){
+  int tempGap = x;
+  int toMalloc = 0;
+
+   x = roundGap(x);
+  while (x > 0)
+  {
+    
+    toMalloc++;
+    
+    x = roundGap(x);
+  } 
+  
+  int *vetorMallocs = malloc(sizeof(int) * toMalloc);
+  tempGap = roundGap(tempGap);
+  for (int i = 0; i <= sizeof(vetorMallocs)/sizeof(int); i++)
+  {
+    vetorMallocs[i] = tempGap;
+    printf("Inserindo na posição %d o gap %d\n", i, tempGap);
+    tempGap = roundGap(tempGap);
+  }
+  
+  return vetorMallocs;
+}
+
 void
-shellSort(int v[], int n, int gap){
-  int swap, i, j;
-  int desordVet = n;
+shellSort(int v[], int n, int gap, int nGap){
+  int swap, i, j, currentGap;
+  
+  int *vetorGaps = devolveVetorgaps(gap);
 
-    // enquanto gap for maior que zero
-    while(gap > 0){
-        printf("GAP: %d\n", gap);
-        // for de 0 (inicio do vetor) até i+gap ou seja, o pulo
-        // seja maior do que o tamanho do vetor.
-        // quanto isso ocorrer, o gap não é mais possivel
-        for(i = 0; (i + gap) < n  ; i++){
+  for (i = 0 ; i < nGap ; i++){
 
-            // neste passo andaremos com um J e o gap. Por isso j recebe i.
-            j = i;
-            // o while fará o swap do gap enquanto o v posição j for maior que o próximo salto
-            while( v[j] > v[j+gap] && j+gap < n){
+    currentGap = vetorGaps[i];
+    for ( j = 0; j < n; j++)
+    {
 
-                swap = v[j], v[j] = v[j+gap], v[j+gap] = swap;
-                j += gap;
-            }
+      // se o indice nao estoura tamanho do vetor
+      if (n > (j+currentGap)){
+
+        if ( v[j] > v[j+currentGap]){
+
+          swap=v[j], v[j] = v[j+currentGap], v[j+currentGap] = swap;
 
         }
-        printf("gap:%d\n", gap);
-        if(gap == 1) gap = 0;
-        gap = roundGap(gap);
+      }
+      
     }
-    //gap = roundGap(gap);
-  //}
-
+    
+  }
+  
 
 }
 
@@ -53,6 +76,7 @@ void printVetor(int v[], int n){
 
 void main(){
   int v[] = {5,2,3,4,1};
-  shellSort(v, 5, 3);
+  
+  shellSort(v, 5, 5, 5);
   printVetor(v, 5);
 }
