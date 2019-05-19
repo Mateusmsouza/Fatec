@@ -71,7 +71,50 @@ insertNodeOnTree(node* tree, int x){
     return tree;
 }
 
+node*
+searchNodeOnTree(node* tree, int x){
+    if (tree == NULL) return NULL;
+    if (tree->value == x) return tree;
+    if(x > tree->value) searchNodeOnTree(tree->right, x);
+    else searchNodeOnTree(tree->left, x);
+}
 
+
+// função que removerá node
+// também procura por um substituto na árvore para ele.
+// O substituto será sempre o maior elemento da esquerda (assumindo uma árvore ordenada) 
+// ou caso o ramo da esquerda seja nulo, o primeiro da direita será retornado.
+node*
+removeNode(node* tree, int x){
+  node *raiz = tree;
+  node *eligible = malloc(sizeof(node));
+  node *fatherOfEligible = malloc(sizeof(node));
+  
+  // se árvore null retorna null
+  if (tree == NULL) return NULL;
+
+
+  if (tree->left == NULL) eligible = tree->right;
+  else raiz = tree->left;
+
+  // achando o elegível e seu pai na árvore
+  while (raiz->right != NULL)
+  {
+    fatherOfEligible = raiz;
+    raiz = raiz->right;
+  }
+  
+  eligible = raiz;
+
+  if(eligible->right != NULL){
+    fatherOfEligible->right = eligible->right;
+  }else{
+    fatherOfEligible->right = eligible->left;
+  }
+
+  eligible->left = tree->left, eligible->right = tree->right;
+  return eligible;
+}
 
 int main(){
 	int n = 10;
@@ -86,7 +129,8 @@ int main(){
 		R = insertNodeOnTree(R, V[i]);
 
 	printTree(R);
-  printf("Altura da árvore: %d\n", (altura(R)));
-
+  
+  node *secondElement = searchNodeOnTree(R, 1)->left;
+  printf("%d\n", secondElement->value);
   return 0;
 }
