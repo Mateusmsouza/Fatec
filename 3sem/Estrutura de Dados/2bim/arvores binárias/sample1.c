@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 
 struct sample1
@@ -128,9 +128,15 @@ int main(){
 	for (i = 0; i < n; i++)
 		R = insertNodeOnTree(R, V[i]);
 
+  printf("printando árvore\n");
 	printTree(R);
   
-  node *secondElement = searchNodeOnTree(R, 1)->left;
-  printf("%d\n", secondElement->value);
+  printf("print finalizado\n");
+  node *secondElement = searchNodeOnTree(R, 15);
+  (secondElement->left) = removeNode((secondElement->left) , 8);
+  
+  printTree(R);
+  
+  printf("return 0.\n");
   return 0;
 }
