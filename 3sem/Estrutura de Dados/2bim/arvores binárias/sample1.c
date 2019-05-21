@@ -1,5 +1,6 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
+#include "assign.h"
 
 struct sample1
 {
@@ -75,12 +76,8 @@ node*
 searchNodeOnTree(node* tree, int x){
     if (tree == NULL){
       return NULL;
-      printf("Retornando null\n");
     } 
     if (tree->value == x){
-      if (tree->right == NULL) printf("Retornou null\n");
-      else printf("Não retornou null");
-      printf("value:%d\n", tree->value);
       return tree;
     } 
     if(x > tree->value) searchNodeOnTree(tree->right, x);
@@ -126,6 +123,9 @@ removeNode(node* tree, int x){
 }
 
 int main(){
+  char *s = "Árvore Binária";
+  assign(s);
+
 	int n = 10;
 	int V[] = {15,8,2,6,7,1,4,6,10,5};
 	int i;
@@ -137,14 +137,15 @@ int main(){
 	for (i = 0; i < n; i++)
 		R = insertNodeOnTree(R, V[i]);
 
-  printf("printando árvore\n");
+  printf("Printando a árvore antes de excluir um elemento\n");
 	printTree(R);
   
-  node *secondElement = malloc(sizeof(node));
-  secondElement = searchNodeOnTree(R, 7);
-  secondElement = (secondElement)->right;
+  node *toRemove = searchNodeOnTree(R, 8);
+  removeNode(toRemove, 8);
+  
+  printf("Printando a árvore após de excluir um elemento\n");
+	printTree(R);
 
-  //if (secondElement == NULL) printf("Retornou null\n");
-  //else printf("Não retornou null");
+  printf("returned 1");
   return 0;
 }
