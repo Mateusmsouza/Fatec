@@ -73,8 +73,16 @@ insertNodeOnTree(node* tree, int x){
 
 node*
 searchNodeOnTree(node* tree, int x){
-    if (tree == NULL) return NULL;
-    if (tree->value == x) return tree;
+    if (tree == NULL){
+      return NULL;
+      printf("Retornando null\n");
+    } 
+    if (tree->value == x){
+      if (tree->right == NULL) printf("Retornou null\n");
+      else printf("Não retornou null");
+      printf("value:%d\n", tree->value);
+      return tree;
+    } 
     if(x > tree->value) searchNodeOnTree(tree->right, x);
     else searchNodeOnTree(tree->left, x);
 }
@@ -90,9 +98,10 @@ removeNode(node* tree, int x){
   node *eligible = malloc(sizeof(node));
   node *fatherOfEligible = malloc(sizeof(node));
   
+  
   // se árvore null retorna null
   if (tree == NULL) return NULL;
-
+  printf("Chegou aqui na árvore null\n");
 
   if (tree->left == NULL) eligible = tree->right;
   else raiz = tree->left;
@@ -131,12 +140,11 @@ int main(){
   printf("printando árvore\n");
 	printTree(R);
   
-  printf("print finalizado\n");
-  node *secondElement = searchNodeOnTree(R, 15);
-  (secondElement->left) = removeNode((secondElement->left) , 8);
-  
-  printTree(R);
-  
-  printf("return 0.\n");
+  node *secondElement = malloc(sizeof(node));
+  secondElement = searchNodeOnTree(R, 7);
+  secondElement = (secondElement)->right;
+
+  //if (secondElement == NULL) printf("Retornou null\n");
+  //else printf("Não retornou null");
   return 0;
 }
