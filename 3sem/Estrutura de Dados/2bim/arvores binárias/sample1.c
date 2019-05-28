@@ -131,6 +131,23 @@ removeNode(node* tree){
   return eligible;
 }
 
+
+int
+somaRecursiva(node *arvore){
+    int l=0, r=0;
+    if (arvore == NULL) return 0;
+    if (arvore->left) l = somaRecursiva(arvore->left);
+    if (arvore->right) r = somaRecursiva(arvore->right);
+    return arvore->value + l + r;
+}
+
+int 
+ismirror(node *arvore1, node *arvore2){
+  if (arvore1 == NULL && arvore2 == NULL) return 1;
+  if (arvore1 == NULL || arvore2 == NULL) return 0;
+  return ( arvore1->value == arvore2->value && ismirror(arvore1->left, arvore2->right) && ismirror(arvore1->right, arvore2->left));
+}
+
 int main(){
     setlocale(LC_ALL , "portuguese");
   //char *s = "Árvore Binária";
