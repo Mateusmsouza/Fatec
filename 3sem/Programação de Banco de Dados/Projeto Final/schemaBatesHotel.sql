@@ -23,18 +23,18 @@ CREATE TABLE camareira (
 
 CREATE TABLE CLIENTE (
 cli_nome varchar2(30) not null,
-cli_cpf number not null,
+cli_cpf number(11) not null,
 cli_dataNasc Date not null,
 cli_restricao_alimenticia varchar2(20),
 CONSTRAINT cli_pk primary key (cli_cpf)
 );
 
 create table RESERVA (
-res_id number not null,
-res_cli_cpf number not null,
+res_id number(10) not null,
+res_cli_cpf number(11) not null,
 res_data Date not null,
-res_checkin Date not null,
-res_checkout Date not null,
+res_checkin VARCHAR2(16),
+res_checkout VARCHAR2(16),
 CONSTRAINT res_pk primary key (res_id)
 );
 
@@ -52,8 +52,8 @@ CONSTRAINT gua_pk primary key (gua_res_id, gua_qua_numero)
 
 CREATE TABLE BTS_BATES(
     BTS_CNPJ NUMBER(11),
-    BTS_HORARIO_CHECKIN DATE,
-    BTS_HORARIO_CHECKOUT DATE,
+    BTS_HORARIO_CHECKIN VARCHAR2(8),
+    BTS_HORARIO_CHECKOUT VARCHAR2(8),
     BTS_ENDERECO VARCHAR(100),
 
     CONSTRAINT BTSPK PRIMARY KEY (BTS_CNPJ)
