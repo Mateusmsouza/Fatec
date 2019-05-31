@@ -137,3 +137,7 @@ INNER JOIN
 QUARTO Q 
 ON A.AND_NUMERO = Q.QUA_ANDAR
 
+-- 
+select *
+from historico_preco_quarto
+where qua_preco = (select max(qua_preco) from historico_preco_quarto)
