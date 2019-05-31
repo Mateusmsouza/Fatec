@@ -107,3 +107,33 @@ BEGIN
 END;
 
 -- fim trigger
+
+-- selects novos
+
+-- listar os gestores e quantidades de funcionários
+-- ordenar por número de funcionários
+select f1.fun_num_documento as documento_gestor, count(1) as num_funcionarios
+from funcionario f1 
+INNER JOIN funcionario f2
+ON f1.fun_num_documento = f2.fun_gestor
+GROUP BY f1.fun_num_documento
+ORDER BY num_funcionarios DESC;
+
+-- ORDERNAR OS MELHORES CLIENTES (OS QUE TEM MAIS RESERVAS)
+SELECT C.CLI_NOME AS NOME_CLIENTE, COUNT(1) AS NUMERO_RESERVAS
+FROM CLIENTE C
+INNER JOIN RESERVA R 
+ON C.CLI_CPF = R.RES_CLI_CPF
+GROUP BY NOME_CLIENTE
+ORDER BY NUMERO_RESERVAS
+
+-- QUANTIA DE QUARTOS
+SELECT COUNT (*) AS QUANTIA_DE_QUARTOS
+FROM BTS_BATES B 
+INNER JOIN 
+AND_ANDAR A 
+ON B.BTS_CNPJ = A.BTS_CNPJ
+INNER JOIN 
+QUARTO Q 
+ON A.AND_NUMERO = Q.QUA_ANDAR
+
