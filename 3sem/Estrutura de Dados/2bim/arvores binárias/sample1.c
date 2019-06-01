@@ -16,17 +16,17 @@ struct sample1
 int altura (node *folha) {
    // quando a folha for null, retorna -1
    if (folha == NULL)
-      return -1; // altura da árvore vazia
+      return -1; // altura da ï¿½rvore vazia
    else {
-      // A recursão abaixo explorará todos os ramos da árvore até encontrar seu fim.
-      // O algoritmo é: o ramo que for mais distante da árvore, retornará o maior valor
-      // para a instância anterior devido a comparação entre alturaEsquerda e alturaDireita abaixo
+      // A recursï¿½o abaixo explorarï¿½ todos os ramos da ï¿½rvore atï¿½ encontrar seu fim.
+      // O algoritmo ï¿½: o ramo que for mais distante da ï¿½rvore, retornarï¿½ o maior valor
+      // para a instï¿½ncia anterior devido a comparaï¿½ï¿½o entre alturaEsquerda e alturaDireita abaixo
       int alturaEsquerda = altura (folha->left);
       int alturaDireita = altura (folha->right);
 
       // se alturaEsquerda maior, retorna-se ela + 1.
-      // Caso contrário, alturaDireita +1.
-      // Esta comparação seleciona o maior lado ao longo da recursão
+      // Caso contrï¿½rio, alturaDireita +1.
+      // Esta comparaï¿½ï¿½o seleciona o maior lado ao longo da recursï¿½o
       if (alturaEsquerda < alturaDireita) return alturaDireita + 1;
       else return alturaEsquerda + 1;
    }
@@ -54,21 +54,21 @@ devolveNo(int x){
 
 node*
 insertNodeOnTree(node* tree, int x){
-    // se não existe árvore, agora existe
+    // se nï¿½o existe ï¿½rvore, agora existe
     node* inTree = tree;
     if (inTree == NULL) return devolveNo(x);
 
-    // se o valor de x é maior que o valor da árvore, checar se há próximo node a direita
+    // se o valor de x ï¿½ maior que o valor da ï¿½rvore, checar se hï¿½ prï¿½ximo node a direita
     if((inTree->value) < x ){
-      // se há nó a direita (não é nulo), a recursão é ativada
+      // se hï¿½ nï¿½ a direita (nï¿½o ï¿½ nulo), a recursï¿½o ï¿½ ativada
       if(inTree->right != NULL) insertNodeOnTree( inTree->right, x );
-      // se o nó a direita é null, então a nova folha é posicionada
+      // se o nï¿½ a direita ï¿½ null, entï¿½o a nova folha ï¿½ posicionada
       else inTree->right = devolveNo(x);
     }
     else{
-      // se há nó a esquerda (não nulo), a recursão é ativada
+      // se hï¿½ nï¿½ a esquerda (nï¿½o nulo), a recursï¿½o ï¿½ ativada
       if(inTree->left != NULL) insertNodeOnTree(inTree->left, x);
-      // se o nó a direita é null, então a nova folha é posicionada
+      // se o nï¿½ a direita ï¿½ null, entï¿½o a nova folha ï¿½ posicionada
       else inTree->left = devolveNo(x);
     }
     return tree;
@@ -87,10 +87,10 @@ searchNodeOnTree(node* tree, int x){
 }
 
 
-// função que removerá node
-// também procura por um substituto na árvore para ele.
-// O substituto será sempre o maior elemento da esquerda (assumindo uma árvore ordenada)
-// ou caso o ramo da esquerda seja nulo, o primeiro da direita será retornado.
+// funï¿½ï¿½o que removerï¿½ node
+// tambï¿½m procura por um substituto na ï¿½rvore para ele.
+// O substituto serï¿½ sempre o maior elemento da esquerda (assumindo uma ï¿½rvore ordenada)
+// ou caso o ramo da esquerda seja nulo, o primeiro da direita serï¿½ retornado.
 node*
 removeNode(node* tree){
   node *raiz = tree;
@@ -98,14 +98,14 @@ removeNode(node* tree){
   node *fatherOfEligible = malloc(sizeof(node));
 
 
-  // se árvore null retorna null
+  // se ï¿½rvore null retorna null
   if (raiz == NULL) return NULL;
 
     // alterado
   if ((raiz)->left == NULL) return raiz->right;
   else fatherOfEligible = raiz, raiz = raiz->left;
 
-  // achando o elegível e seu pai na árvore
+  // achando o elegï¿½vel e seu pai na ï¿½rvore
   while (raiz->right != NULL)
   {
     fatherOfEligible = raiz;
@@ -150,7 +150,7 @@ ismirror(node *arvore1, node *arvore2){
 
 int main(){
     setlocale(LC_ALL , "portuguese");
-  //char *s = "Árvore Binária";
+  //char *s = "ï¿½rvore Binï¿½ria";
   //assign(s);
 
 	int n = 10;
@@ -164,16 +164,13 @@ int main(){
 	for (i = 0; i < n; i++)
 		R = insertNodeOnTree(R, V[i]);
 
-  printf("Printando a árvore antes de excluir um elemento\n");
+  printf("Printando a ï¿½rvore antes de excluir um elemento\n");
 	printTree(R);
-
-  //node *toRemove = searchNodeOnTree(R, 8);
-  //printf("Valor a ser removido da árvore: %d\n", toRemove->value);
-
+  
   printf("Excluindo o elemento: %d\n", searchNodeOnTree(R, 8)->value);
   removeNode( searchNodeOnTree(R, 8) );
 
-  printf("Printando a árvore após de excluir um elemento\n");
+  printf("Printando a ï¿½rvore apï¿½s de excluir um elemento\n");
   printTree(R);
 
   return 0;

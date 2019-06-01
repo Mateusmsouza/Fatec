@@ -22,23 +22,6 @@ void assign(){
 }
 #include <stdio.h>
 
-<<<<<<< HEAD
-void insertSort (int v[], int n){
-    // Criando variável de troca
-  int swap, i, j;
-
-  // iniciando a iteração a partir do primeiro elemento, o algoritmo exige que haja pelo menos um elemento anterior para
-  // realizar a comparação, por este motivo a iteração do for mais externo deve iniciar em 1.
-  for (int j = 1; j < n; ++j) {
-      int x = v[j];
-      int i;
-      for (i = j-1; i >= 0 && v[i] > x; --i)
-        printf("I: %d ", i);
-         v[i+1] = v[i];
-    printf("\n");;
-      v[i+1] = x;
-   }
-=======
 void
 insertSort(int v[], int n){
   int selecionado, i, j;
@@ -61,7 +44,6 @@ insertSort(int v[], int n){
     // b. encontrar o índice anterior ao índice que o elemento selecionado deverá ficar.
     v[j+1] = selecionado;
   }
->>>>>>> b2a98b1537a12ba01fdc7566330770545aa77d37
 
 }
 
