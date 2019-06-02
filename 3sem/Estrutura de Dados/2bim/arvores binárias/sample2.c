@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /*Sample 2 AB, Mateus Machado, Fatec São José dos Campos*/
 
@@ -64,18 +65,60 @@ int verificaEspelho(no *arvore1, no *arvore2){
 int somaRecursiva(no *arvore){
   return arvore ? arvore->valor + somaRecursiva(arvore->direita) + somaRecursiva(arvore->esquerda) : 0;
 }
+
+// Retorna a altura de uma árvore (Considerando o primeiro nó).
+int retornaAltura(no *arvore){
+
+  if (!arvore) return 0;
+
+  int alturaDireita = retornaAltura(arvore->direita);
+  int alturaEsquerda = retornaAltura(arvore->esquerda);
+
+  return 1 + (alturaDireita > alturaEsquerda ? alturaDireita : alturaEsquerda);
+}
+
+// Remove um nó passado e realiza a substituição por um nó filho no lugar. 
+void removeNo(no *iAmGroot){
+  
+  if (!iAmGroot) return;
+  
+  if (iAmGroot->esquerda == NULL){
+    memcpy(iAmGroot, iAmGroot->direita, sizeof(no));
+    printf("1\n");
+    return;
+  } 
+  
+  no* elegivel = iAmGroot->esquerda;
+  no* paiDoElegivel = iAmGroot;
+  while (elegivel->direita != NULL)
+  {
+    printf("1\n");
+    paiDoElegivel = elegivel;
+    elegivel = elegivel->direita;
+  }
+  
+  if(elegivel->direita) paiDoElegivel->direita = elegivel->direita;
+  else paiDoElegivel->direita = elegivel->esquerda; 
+
+  elegivel->esquerda = iAmGroot -> esquerda, elegivel->direita = iAmGroot->direita;
+  memcpy(iAmGroot, elegivel, sizeof(no));
+}
+
 int main(){
   no *arvorezinha = NULL;
 
-  insereNoRecursivo(&arvorezinha, 10);
+  insereNoRecursivo(&arvorezinha, 2);
   insereNoRecursivo(&arvorezinha, 1);
-  insereNoRecursivo(&arvorezinha, 5);
-  insereNoRecursivo(&arvorezinha, 6);
-  insereNoRecursivo(&arvorezinha, 8);
+  insereNoRecursivo(&arvorezinha, 3);
+  //insereNoRecursivo(&arvorezinha, 6);
+  //insereNoRecursivo(&arvorezinha, 8);
+  removeNo(buscaNaArvoreRecursiva(arvorezinha, 2));
   imprimeArvoreRecursivo(arvorezinha);
-  printf("Endereco de memória do valor %d\n%p\n", buscaNaArvoreRecursiva(arvorezinha, 10)->valor, buscaNaArvoreRecursiva(arvorezinha, 10) );
+  //printf("Endereco de memória do valor %d\n%p\n", buscaNaArvoreRecursiva(arvorezinha, 10)->valor, buscaNaArvoreRecursiva(arvorezinha, 10) );
   
-  espelhaArvore(arvorezinha);
-  imprimeArvoreRecursivo(arvorezinha);
+  //espelhaArvore(arvorezinha);
+  //imprimeArvoreRecursivo(arvorezinha);
+
+  printf("Altura de árvore: %d\n", retornaAltura(arvorezinha));
   return 0;
 }
