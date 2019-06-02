@@ -53,6 +53,17 @@ void espelhaArvore(no *arvore){
   }
 }
 
+// Verifica se duas árvores diferentes são espelho uma da outra
+int verificaEspelho(no *arvore1, no *arvore2){
+  if (arvore1 == NULL && arvore2 == NULL) return 1;
+  if (arvore1 == NULL || arvore2 == NULL) return 0;
+  return ( arvore1->valor == arvore2->valor && verificaEspelho(arvore1, arvore2) && verificaEspelho(arvore2, arvore1) );
+}
+
+// Realiza a soma de todos os valores da árvore de forma recursiva
+int somaRecursiva(no *arvore){
+  return arvore ? arvore->valor + somaRecursiva(arvore->direita) + somaRecursiva(arvore->esquerda) : 0;
+}
 int main(){
   no *arvorezinha = NULL;
 
