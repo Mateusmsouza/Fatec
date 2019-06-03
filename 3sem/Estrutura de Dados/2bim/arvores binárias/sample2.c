@@ -69,13 +69,13 @@ int somaRecursiva(no *arvore){
 // Retorna a altura de uma árvore (Considerando o primeiro nó).
 int retornaAltura(no *arvore){
 
-  if (!arvore) return 0;
+   if (!arvore) return 0;
 
-  int alturaDireita = retornaAltura(arvore->direita);
-  int alturaEsquerda = retornaAltura(arvore->esquerda);
+   int alturaDireita = retornaAltura(arvore->direita);
+   int alturaEsquerda = retornaAltura(arvore->esquerda);
 
-  return 1 + (alturaDireita > alturaEsquerda ? alturaDireita : alturaEsquerda);
-}
+   return 1 + (alturaDireita > alturaEsquerda ? alturaDireita : alturaEsquerda);
+ }
 
 // Remove um nó passado e realiza a substituição por um nó filho no lugar. 
 void removeNo(no *iAmGroot){
@@ -104,21 +104,30 @@ void removeNo(no *iAmGroot){
   memcpy(iAmGroot, elegivel, sizeof(no));
 }
 
+// Retorna a altura até um elemento. Caso não encontre, retornará 0.
+int retornaAlturaAteElemento(no *arvore, int valor){
+  if (!arvore) return 0;
+  if (arvore->valor == valor) return 1;
+
+  int retorno = retornaAlturaAteElemento(arvore->esquerda, valor) + retornaAlturaAteElemento(arvore->direita, valor);
+  return retorno == 0 ? 0: 1 + retorno;
+}
+
 int main(){
   no *arvorezinha = NULL;
 
   insereNoRecursivo(&arvorezinha, 2);
   insereNoRecursivo(&arvorezinha, 1);
   insereNoRecursivo(&arvorezinha, 3);
-  //insereNoRecursivo(&arvorezinha, 6);
+  insereNoRecursivo(&arvorezinha, 4);
   //insereNoRecursivo(&arvorezinha, 8);
-  removeNo(buscaNaArvoreRecursiva(arvorezinha, 2));
-  imprimeArvoreRecursivo(arvorezinha);
+ // removeNo(buscaNaArvoreRecursiva(arvorezinha, 2));
+ // imprimeArvoreRecursivo(arvorezinha);
   //printf("Endereco de memória do valor %d\n%p\n", buscaNaArvoreRecursiva(arvorezinha, 10)->valor, buscaNaArvoreRecursiva(arvorezinha, 10) );
   
   //espelhaArvore(arvorezinha);
   //imprimeArvoreRecursivo(arvorezinha);
 
-  printf("Altura de árvore: %d\n", retornaAltura(arvorezinha));
+  printf("Altura de árvore até 4: %d\n", retornaAlturaAteElemento(arvorezinha, 4));
   return 0;
 }
