@@ -60,6 +60,24 @@ insertSort(cel *lst){
     temp = NULL;
     free(temp);
 }
+
+void 
+bubbleSort(cel *lst){
+    cel * aux;
+
+    for (cel *i = lst->prox; i != NULL ; i = i->prox)
+    {
+        for (cel *j = lst->prox; j->prox != NULL ; j = j->prox)
+        {
+            if (j->valor > (j->prox)->valor && (j->prox)->prox != NULL){
+                printf("entrou no if \n");
+                aux = j->prox;
+                j-> prox = aux->prox;
+                aux->prox = j;
+            }
+        }
+    }
+}
 /*
 cel retiracelula(cel *lista){
 	cel *removed = lista->prox;
@@ -83,7 +101,8 @@ int main(){
 	inserir(&list, 1);
 	inserir(&list, 8);
 	inserir(&list, 6);
-    insertSort(list);
+    //insertSort(list);
+    bubbleSort(list->prox);
 	imprimir(list->prox);
 	return 0;
 }
