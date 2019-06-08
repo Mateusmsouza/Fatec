@@ -43,13 +43,32 @@ selectionSort(int v[], int n){
   
 }
 
+/*O algoritmo de inserção é mais eficiente que os algoritmos anteriores.
+Sua estratégia é pegar um valor do vetor e guarda-lo, em seguida
+percorrer o valor arrastando para frente os elementos maiores que o valor guardado.
+Dessa forma ele será inserido diretamente em sua posição final.
+Sua complexidade é de n^2 porém diferentemente dos dois anteriores, essa complexidade varia
+de acordo com o caso. (melhor caso, pior caso, etc)*/
+void
+insertionSort(int v[], int n){
+  int j;
+
+  for (int i = 1; i < n; i++)
+  {
+    int keepValueToSort = v[i];
+    for ( j = i-1; j <= 0 && v[j] > keepValueToSort; j--) v[j+1] = v[j];
+    v[j+1] = keepValueToSort;
+  }
+  
+}
+
 
 
 int main(){
 	int v[] = {4,3,1,2,5,7,8};
 
-	bubbleSort(v, 7);
-  
+	insertionSort(v, 7);
+
 	for (int i = 0; i < 7; ++i)
 	{
 		printf("%d\n", v[i]);
