@@ -64,18 +64,22 @@ insertSort(cel *lst){
 void 
 bubbleSort(cel *lst){
     cel * aux;
+    cel * firstLoop = lst;
 
-    for (cel *i = lst->prox; i != NULL ; i = i->prox)
-    {
-        for (cel *j = lst->prox; j->prox != NULL ; j = j->prox)
+    while(firstLoop){
+
+        for (cel *j = lst; j->prox != NULL ; j = j->prox)
         {
-            if (j->valor > (j->prox)->valor && (j->prox)->prox != NULL){
-                printf("entrou no if \n");
-                aux = j->prox;
-                j-> prox = aux->prox;
-                aux->prox = j;
+            if (j->valor > (j->prox)->valor && (j->prox)->prox){
+                
+               aux = j->prox;
+               j->prox = (j->prox)->prox;
+               aux->prox = j;
+               aux = NULL;
             }
         }
+
+        firstLoop = firstLoop->prox;
     }
 }
 /*
