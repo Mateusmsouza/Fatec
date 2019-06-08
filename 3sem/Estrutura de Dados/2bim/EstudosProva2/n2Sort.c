@@ -21,12 +21,35 @@ bubbleSort(int v[], int n){
 }
 
 
+/*O algoritmo de ordenação por seleção possui uma lógica bem simples: 
+percorrer o vetor e selecionar o menor, aloca-lo na posição inicial do vetor,
+percorrer novamente e selecionar o menor, aloca-lo na segunda posição do vetor e assim vai.
+Sua complexidade é de n^2*/
+void
+selectionSort(int v[], int n){
+
+  for (int i = 0; i < n-1; i++)
+  {
+    int smallestElementIndex = i;
+    for (int j = i+1; i < n-1; i++)
+    {
+      if (v[i] > v[j]) smallestElementIndex = j;
+    }
+    
+    int swap = v[i];
+    v[i] = v[smallestElementIndex];
+    v[smallestElementIndex] = swap;
+  }
+  
+}
+
+
 
 int main(){
 	int v[] = {4,3,1,2,5,7,8};
 
 	bubbleSort(v, 7);
-
+  
 	for (int i = 0; i < 7; ++i)
 	{
 		printf("%d\n", v[i]);
