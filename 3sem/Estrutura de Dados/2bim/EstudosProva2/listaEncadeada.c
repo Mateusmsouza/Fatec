@@ -57,8 +57,6 @@ insertSort(cel *lst){
         ordenado = ordenado->prox;
 
     }
-    temp = NULL;
-    free(temp);
 }
 
 void 
