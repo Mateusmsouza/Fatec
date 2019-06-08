@@ -34,9 +34,9 @@ void inserir (cel **lista, int x) {
 
 
 void 
-insertSort(cel **lst){
+insertSort(cel *lst){
     cel *temp = NULL;
-    cel *ordenado = *lst;
+    cel *ordenado = lst;
 
     while(ordenado){
         cel *valorOrdenando = ordenado->prox;
@@ -44,7 +44,7 @@ insertSort(cel **lst){
         // removendo o valorOrdenado da lista
         ordenado->prox = valorOrdenando->prox;
 
-        for (cel* i = *lst; i != ordenado->prox; i = i->prox)
+        for (cel* i = lst; i != ordenado->prox; i = i->prox)
         {
             if (valorOrdenando->valor <= (i->prox)->valor || i->prox == ordenado->prox){
                 temp = i->prox;
@@ -103,8 +103,8 @@ int main(){
 	inserir(&list, 1);
 	inserir(&list, 8);
 	inserir(&list, 6);
-  insertSort(&list);
+  insertSort(list);
    // bubbleSort(list->prox);
-	imprimir(list);
+	imprimir(list->prox);
 	return 0;
 }
