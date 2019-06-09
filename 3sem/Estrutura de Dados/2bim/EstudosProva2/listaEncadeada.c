@@ -98,7 +98,7 @@ void adicionaNaFrente(cel *lista, cel *adicionar){
 int main(){
 	cel *list = NULL;
 
-	inserir(&list, 3);
+	inserir(&list, 3); // <- cabeça da lista
 	inserir(&list, 2);
 	inserir(&list, 1);
 	inserir(&list, 8);
