@@ -12,8 +12,11 @@ Criar o usuário para acessar pelo SQLDeveloper
    
    Executar os comandos abaixo no SQLplus:
 > connect sys as sysdba;
+
 > alter session set "_ORACLE_SCRIPT"=true; 
+
 > create user fatec identified by fatec; 
+
 > GRANT ALL PRIVILEGES TO fatec;
 
 Instale o SQL Developer e conecte usando a porta exposta (1521), usuário criado e servicename: 
